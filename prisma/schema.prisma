@@ -6,10 +6,127 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Flashcard {
+  id             String         @id @default(uuid())
+  userId         String
+  type           FlashcardType
+  question       String
+  answer         String?        // For QA
+  correct        Boolean?       // For true/false
+  choices        String[]       @default([]) // For multichoice
+  correctChoices String[]       @default([]) // For multichoice
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  deckId         String
+  deck           Deck           @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@map("flashcard")
+}
+
+model Deck  {
+  id         String      @id @default(uuid())
+  name       String
+  cards      Flashcard[]
+  userId     String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deckStatus DeckStatus[]
+
+  @@map("deck")
+}
+
+model DeckStatus {
+  id          String      @id @default(uuid())
+  deckId      String
+  userId      String
+  lastVisited DateTime    @default(now())
+  progress    Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  deck        Deck        @relation(fields: [deckId], references: [id], onDelete: Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([deckId, userId])
+  @@map("deck_status")
+}
+
+
+enum FlashcardType {
+  QA
+  MULTICHOICE
+  TRUEFALSE
+}
+
+// AUTH
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean
+  image         String?
+  createdAt     DateTime
+  updatedAt     DateTime
+  sessions      Session[]
+  accounts      Account[]
+  decks         Deck[]
+  deckStatus    DeckStatus[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
 }

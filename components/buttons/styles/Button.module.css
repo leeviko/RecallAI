@@ -1,0 +1,149 @@
+.btn {
+  border: none;
+  background: none;
+  font-family: var(--geins-sans);
+  font-size: 1rem;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn.w-full {
+  width: 100%;
+}
+
+.btn span {
+  margin-right: 0.25rem;
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+/* SIZES */
+
+.btn.sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.btn.md {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.btn.lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* FILLED */
+
+.btn.fill,
+.btn.outline,
+.btn.text {
+  transition: color 0.15s, background 0.15s;
+}
+
+/* WHITE FILL */
+.btn.fill.white {
+  color: var(--black);
+  background: white;
+}
+.btn.fill.white:hover {
+  background: rgb(219, 219, 219);
+}
+
+/* ACCENT LIGHT FILL */
+.btn.fill.accent-light {
+  background: rgb(var(--accent-light));
+}
+.btn.fill.accent-light:hover {
+  background: rgb(var(--accent));
+}
+.btn.fill.accent-light:disabled {
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(var(--accent-light), 0.5);
+}
+
+/* ACCENT DARK FILL */
+.btn.fill.accent-dark {
+  background: rgb(var(--accent-dark-1));
+}
+.btn.fill.accent-dark:hover {
+  background: rgb(var(--accent-dark-2));
+}
+.btn.fill.accent-dark:disabled {
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(var(--accent-dark-1), 0.5);
+}
+
+/* DANGER FILL */
+.btn.fill.danger {
+  background: rgb(var(--error));
+}
+.btn.fill.danger:hover {
+  background: rgb(var(--error-dark));
+}
+.btn.fill.danger:disabled {
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(var(--error), 0.5);
+}
+
+/* LIGHT OUTLINE */
+.btn.outline.accent-light {
+  border: 2px solid rgb(var(--accent-light));
+  color: rgb(var(--accent-light));
+}
+.btn.outline.accent-light:hover {
+  background: rgb(var(--accent-light));
+  color: white;
+}
+.btn.outline.accent-light:disabled {
+  color: rgba(var(--accent-light), 0.5);
+  background: none;
+  border-color: rgba(var(--accent-light), 0.5);
+}
+
+/* DARK OUTLINE */
+.btn.outline.accent-dark {
+  border: 2px solid rgb(var(--accent-dark-1));
+  color: rgb(var(--accent-dark-1));
+}
+.btn.outline.accent-dark:hover {
+  background: rgb(var(--accent-dark-1));
+  color: white;
+}
+.btn.outline.accent-dark:disabled {
+  color: rgba(var(--accent-dark-1), 0.5);
+  background: none;
+  border-color: rgba(var(--accent-dark-1), 0.5);
+}
+
+/* DANGER OUTLINE */
+.btn.outline.danger {
+  border: 2px solid rgb(var(--error));
+  color: rgb(var(--error));
+}
+.btn.outline.danger:hover {
+  background: rgb(var(--error));
+  color: white;
+}
+.btn.outline.danger:disabled {
+  color: rgba(var(--error), 0.5);
+  background: none;
+  border-color: rgba(var(--error), 0.5);
+}
+
+/* TEXT */
+
+.btn.text {
+  background-color: none;
+}
+.btn.text:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: red; */
+}

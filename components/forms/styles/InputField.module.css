@@ -1,0 +1,44 @@
+.field {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.inputContainer input {
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  border: 1px solid var(--teal-light-025);
+  position: relative;
+  border-radius: 5px;
+  z-index: 1;
+  background-color: var(--black-dark-2-100);
+  color: var(--teal-light-100);
+  font-family: var(--geins-sans);
+  font-size: 1rem;
+}
+
+.inputContainer input.error {
+  border-color: rgb(var(--error-muted));
+}
+
+.inputError {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  color: rgb(var(--error));
+}
+
+.errorIcon {
+  filter: invert(13%) sepia(83%) saturate(7500%) hue-rotate(2deg)
+    brightness(101%) contrast(114%);
+  opacity: 0.8;
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}

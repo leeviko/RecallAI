@@ -1,13 +1,14 @@
-import styles from './Navbar.module.css';
+import Link from 'next/link';
+import styles from './styles/Navbar.module.css';
 import NavLinks from './NavLinks';
 
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.wrapper}>
-        <div className={styles.logo}>
+        <Link className={styles.logo} href="/">
           <h3>RecallAI</h3>
-        </div>
+        </Link>
         <NavLinks />
       </div>
     </nav>

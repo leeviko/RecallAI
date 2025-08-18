@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container textarea {
+  font-family: var(--geins-sans);
+  max-height: 500px;
+  min-height: 200px;
+  border-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  resize: none;
+  border: 2px solid var(--grey-2-025);
+  border-bottom: none;
+  background-color: var(--black-dark-4-025);
+  color: var(--teal-light-100);
+}
+
+.sendContainer {
+  border-radius: 5px;
+  border: 2px solid var(--grey-2-025);
+  border-top: none;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  background-color: var(--black-dark-2-050);
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.sendContainer .btnText {
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.sendContainer.loading .btnText {
+  opacity: 0.5;
+  color: var(--teal-light-100);
+}
+
+.sendContainer button {
+  transition: background-color 0.1s ease;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--geist-sans);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.sendContainer:not(.loading) button:hover {
+  background-color: var(--black-dark-2-100);
+}
+
+.sendContainer.loading button {
+  cursor: auto;
+}
+
+.sendContainer.loading button img {
+  opacity: 0.5;
+}
+
+.loading .btnText .wave {
+  display: inline-block;
+  animation: wave 1.2s infinite;
+}
+
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}

@@ -1,0 +1,34 @@
+.container {
+  width: 650px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 3rem;
+}
+
+.container h2 {
+  font-size: 2rem;
+}
+
+.container p {
+  color: var(--teal-light-050);
+}
+
+.container .subtitle {
+  margin: 1rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.footer {
+  position: absolute;
+  margin-top: 1.25rem;
+}
+
+.footer p {
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
+
+.footer strong {
+  color: var(--teal-light-080);
+}

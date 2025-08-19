@@ -3,7 +3,7 @@ import Button from '@/components/buttons/Button';
 import InputField from '@/components/forms/InputField';
 import Glow from '@/components/Glow';
 import LoaderInline from '@/components/loader/LoaderInline';
-import { signUp } from '@/lib/auth-client';
+import { signIn, signUp } from '@/lib/auth-client';
 import styles from '@/styles/Auth.module.css';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
@@ -52,6 +52,24 @@ const Page = () => {
     );
   };
 
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    const data = await signIn.social({
+      provider: 'google',
+    });
+
+    setLoading(false);
+
+    if (data.error) {
+      console.log('Google login error', data.error);
+      toast.error(data.error.message || 'Failed to login with Google');
+      return;
+    }
+
+    router.refresh();
+    toast.success('Logged in successfully');
+  };
+
   return (
     <div className={styles.container}>
       <Glow />
@@ -88,7 +106,11 @@ const Page = () => {
           </Button>
         </form>
         <div className={styles.divider}></div>
-        <button className={styles.googleButton} disabled={loading}>
+        <button
+          className={styles.googleButton}
+          disabled={loading}
+          onClick={handleGoogleLogin}
+        >
           <img src="/icons/google.svg" alt="Google logo" />
           <span>Continue with Google</span>
         </button>

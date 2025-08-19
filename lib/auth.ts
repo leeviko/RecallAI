@@ -1,7 +1,6 @@
 import { betterAuth, BetterAuthOptions } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import prisma from './prisma';
-import { socialProviders } from 'better-auth/social-providers';
 
 const options = {
   database: prismaAdapter(prisma, {
@@ -16,9 +15,13 @@ const options = {
       maxAge: 5 * 60,
     },
   },
-  // socialProviders: {
-  //   google
-  // }
+  socialProviders: {
+    google: {
+      prompt: 'select_account',
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    },
+  },
 } satisfies BetterAuthOptions;
 
 export const auth = betterAuth({ ...options });

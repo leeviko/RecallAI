@@ -4,8 +4,15 @@ import styles from './styles/Chat.module.css';
 import { generateDecks } from '@/data/generation';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { FlashcardResponse } from '@/lib/schemas/flashcards';
 
-const Chat = () => {
+type Props = {
+  data: FlashcardResponse | null;
+  setData: (data: FlashcardResponse) => void;
+  setGenerated: (generated: boolean) => void;
+};
+
+const Chat = ({ data, setData, setGenerated }: Props) => {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -17,9 +24,10 @@ const Chat = () => {
     setLoading(true);
     const response = await generateDecks(prompt);
     setLoading(false);
-    if (response.ok) {
+    if (response.ok && response.data) {
       toast.success('Flashcards generated successfully!');
-      console.log(response.data);
+      setData(response.data);
+      setGenerated(true);
     } else {
       toast.error(response.msg);
       console.error(response.msg);

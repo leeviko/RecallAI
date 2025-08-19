@@ -1,9 +1,10 @@
 .container {
-  width: 650px;
+  /* width: 650px;
+  margin-left: auto;
+  margin-right: auto; 
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  margin-top: 3rem;
+  transform: translateX(-50%); */
 }
 
 .container h2 {

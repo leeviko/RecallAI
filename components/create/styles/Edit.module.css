@@ -1,0 +1,29 @@
+.header {
+  margin: 1.5rem 0;
+}
+
+.header .titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .titleContainer img {
+  transform: rotate(-90deg);
+}
+
+.tagContainer {
+  margin-top: 0.75rem;
+}
+
+.tagContainer .aiGenerated {
+  font-size: 0.85rem;
+  margin-left: 1rem;
+  color: var(--teal-light-080);
+}
+
+.list {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}

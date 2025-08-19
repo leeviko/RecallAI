@@ -4,6 +4,8 @@
   --purple-dark-rgb: 132, 39, 162;
   --purple-dark-100: rgb(var(--purple-dark-rgb));
   --purple-dark-050: rgba(var(--purple-dark-rgb), 0.5);
+  --purple-dark-025: rgba(var(--purple-dark-rgb), 0.25);
+  --purple-dark-010: rgba(var(--purple-dark-rgb), 0.1);
 
   --purple-dark-2-rgb: 113, 33, 139;
   --purple-dark-2-100: rgb(var(--purple-dark-2-rgb));

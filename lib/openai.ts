@@ -5,7 +5,9 @@ export const instructions = `
 
   ### Goal:
   Generate flashcards from the given input text. 
-  You must return a JSON array of flashcards. Each flashcard should have:
+  You must return a JSON object of the title and cards array. 
+  Title character limit minimum 3, and maximum 55.
+  Each flashcard should have:
   - "type": one of ["multichoice", "yesno", "qa"]
   - "question": the flashcard's main question
   - "answer": the correct answer(s). Always an array.
@@ -29,29 +31,33 @@ export const instructions = `
   ### Rules:
   - Mix the three types naturally (don't use only one type, unless specified otherwise).
   - Keep language simple, clear, and student-friendly.
-  - Do not include explanations, only the flashcards in JSON format.
+  - Do not include explanations, only the flashcards and title in JSON format.
   - Limit each flashcard's question to one idea.
   - Maximum 15 flashcards per request unless specified otherwise.
 
   ### Example Output:
-  [
-    {
-      "type": "multichoice",
-      "question": "Which of the following are prime numbers?",
-      "choices": ["2", "3", "4", "5"],
-      "answer": ["2", "3", "5"]
-    },
-    {
-      "type": "yesno",
-      "question": "Is water made of hydrogen and oxygen?",
-      "answer": ["Yes"]
-    },
-    {
-      "type": "qa",
-      "question": "What is the process by which plants make their own food?",
-      "answer": ["Photosynthesis"]
-    }
-  ]
+  {
+    title: "Sample Flashcard Deck",
+    cards: 
+    [
+      {
+        "type": "multichoice",
+        "question": "Which of the following are prime numbers?",
+        "choices": ["2", "3", "4", "5"],
+        "answer": ["2", "3", "5"]
+      },
+      {
+        "type": "yesno",
+        "question": "Is water made of hydrogen and oxygen?",
+        "answer": ["Yes"]
+      },
+      {
+        "type": "qa",
+        "question": "What is the process by which plants make their own food?",
+        "answer": ["Photosynthesis"]
+      }
+    ]
+  }
 `;
 
 export const openai = new OpenAI({

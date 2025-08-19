@@ -3,7 +3,7 @@
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { instructions, openai } from '@/lib/openai';
-import { flashcardsSchema } from '@/lib/schemas/flashcards';
+import { flashcardsResponseSchema } from '@/lib/schemas/flashcards';
 
 export async function generateDecks(prompt: string) {
   const session = await auth.api.getSession({
@@ -19,7 +19,9 @@ export async function generateDecks(prompt: string) {
 
   const output = response.output_text;
 
-  const validatedOutput = flashcardsSchema.safeParse(JSON.parse(output));
+  const validatedOutput = flashcardsResponseSchema.safeParse(
+    JSON.parse(output)
+  );
 
   if (!validatedOutput.success) {
     console.error('Invalid output:', validatedOutput.error);

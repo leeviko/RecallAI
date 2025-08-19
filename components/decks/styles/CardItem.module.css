@@ -1,0 +1,87 @@
+.card {
+  background-color: var(--black-dark-4-050);
+  border-radius: 5px;
+  border: 2px solid var(--grey-2-025);
+  padding: 1rem;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header .number {
+  background-color: var(--purple-dark-025);
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+.header h3 {
+  font-size: 1.1rem;
+  padding-right: 2rem;
+}
+
+.header .toggle {
+  cursor: pointer;
+  border: none;
+  background: none;
+  position: absolute;
+  right: 0;
+}
+
+.header .toggle.open {
+  transform: rotate(180deg);
+}
+
+.header .toggle.closed {
+  transform: rotate(0deg);
+}
+
+.content {
+  transition: max-height 0.2s ease, opacity 0.2s ease, margin-top 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.content.closed {
+  margin-top: 0rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.content.open {
+  margin-top: 1rem;
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.content label {
+  font-size: 0.85rem;
+  color: var(--body-txt);
+}
+
+.content input {
+  background-color: var(--black-dark-4-050);
+  border-radius: 5px;
+  border: 2px solid var(--grey-2-025);
+  font-family: var(--geins-sans);
+  font-size: 0.85rem;
+  color: var(--body-txt);
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.content .btnContainer {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: right;
+}

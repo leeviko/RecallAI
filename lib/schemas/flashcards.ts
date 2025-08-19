@@ -7,4 +7,9 @@ const FlashcardSchema = z.object({
   choices: z.array(z.string()).max(4).optional(),
 });
 
-export const flashcardsSchema = z.array(FlashcardSchema);
+export const flashcardsResponseSchema = z.object({
+  title: z.string().min(3).max(55),
+  cards: z.array(FlashcardSchema),
+});
+
+export type FlashcardResponse = z.input<typeof flashcardsResponseSchema>;

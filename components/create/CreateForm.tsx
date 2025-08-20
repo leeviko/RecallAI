@@ -1,10 +1,10 @@
 import styles from './styles/CreateForm.module.css';
 import Chat from './Chat';
-import { FlashcardResponse } from '@/lib/schemas/flashcards';
+import { DeckResponse } from '@/lib/schemas/flashcards';
 
 type Props = {
-  data: FlashcardResponse | null;
-  setData: (data: FlashcardResponse) => void;
+  data: DeckResponse | null;
+  setData: (data: DeckResponse) => void;
   setGenerated: (generated: boolean) => void;
 };
 

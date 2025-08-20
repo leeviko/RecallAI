@@ -8,7 +8,7 @@ export const instructions = `
   You must return a JSON object of the title and cards array. 
   Title character limit minimum 3, and maximum 55.
   Each flashcard should have:
-  - "type": one of ["multichoice", "yesno", "qa"]
+  - "type": one of ["MULTICHOICE", "YESNO", "QA"]
   - "question": the flashcard's main question
   - "answer": the correct answer(s). Always an array.
   - "choices": (only for multichoice) an array of up to 4 options, including all correct ones. Always an array.
@@ -41,18 +41,18 @@ export const instructions = `
     cards: 
     [
       {
-        "type": "multichoice",
+        "type": "MULTICHOICE",
         "question": "Which of the following are prime numbers?",
         "choices": ["2", "3", "4", "5"],
         "answer": ["2", "3", "5"]
       },
       {
-        "type": "yesno",
+        "type": "YESNO",
         "question": "Is water made of hydrogen and oxygen?",
         "answer": ["Yes"]
       },
       {
-        "type": "qa",
+        "type": "QA",
         "question": "What is the process by which plants make their own food?",
         "answer": ["Photosynthesis"]
       }

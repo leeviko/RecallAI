@@ -14,14 +14,13 @@ datasource db {
 }
 
 model Flashcard {
-  id             String         @id @default(uuid())
+  id             String         @id @default(cuid())
   userId         String
   type           FlashcardType
   question       String
-  answer         String?        // For QA
+  answer         String[]        
   correct        Boolean?       // For true/false
   choices        String[]       @default([]) // For multichoice
-  correctChoices String[]       @default([]) // For multichoice
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
   deckId         String

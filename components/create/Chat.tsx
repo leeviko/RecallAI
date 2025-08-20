@@ -1,14 +1,14 @@
 'use client';
 import Image from 'next/image';
 import styles from './styles/Chat.module.css';
-import { generateDecks } from '@/data/generation';
+import { generateDecks } from '@/data/decks';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { FlashcardResponse } from '@/lib/schemas/flashcards';
+import { DeckResponse } from '@/lib/schemas/flashcards';
 
 type Props = {
-  data: FlashcardResponse | null;
-  setData: (data: FlashcardResponse) => void;
+  data: DeckResponse | null;
+  setData: (data: DeckResponse) => void;
   setGenerated: (generated: boolean) => void;
 };
 

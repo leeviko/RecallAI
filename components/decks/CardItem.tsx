@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import styles from './styles/CardItem.module.css';
 import { useState } from 'react';
-import InputField from '../forms/InputField';
 import Button from '../buttons/Button';
+import { FlashcardType } from '@prisma/client';
 
 type Props = {
   number: number;
-  type: 'multichoice' | 'yesno' | 'qa';
+  type: FlashcardType;
   question: string;
   answer: string[];
   choices?: string[];
@@ -27,7 +27,7 @@ const CardItem = ({ number, question, type, answer, choices }: Props) => {
           <Image src="/icons/arrow.svg" alt="Toggle" width={24} height={24} />
         </button>
       </div>
-      {type === 'qa' && (
+      {type === FlashcardType.QA && (
         <div
           className={`${styles.content} ${
             isOpen ? styles.open : styles.closed

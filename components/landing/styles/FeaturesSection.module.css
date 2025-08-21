@@ -1,0 +1,71 @@
+.features {
+  margin-bottom: 10rem;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.wrapper h1 {
+  text-align: center;
+}
+
+.tabs {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.tabs button {
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: var(--geist-sans);
+  color: var(--body-txt);
+  background: none;
+  border: none;
+  transition: background-color 0.1s ease;
+}
+
+.tabs button:hover {
+  background-color: var(--black-dark-4-025);
+}
+
+.tabs button.active {
+  background-color: var(--black-dark-4-050);
+}
+
+.tabs button:active {
+  background-color: var(--black-dark-4-050);
+}
+
+.imgContainer {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  height: 500px;
+}
+
+.imgContainer img {
+  border-radius: 10px;
+  width: 1000px;
+  height: auto;
+  filter: drop-shadow(-2px 4px 4px var(--black-dark-4-025));
+}
+
+.featureImgContainer {
+  position: relative;
+  min-height: 500px;
+}
+
+.imgContainer.active {
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+  z-index: 1;
+}

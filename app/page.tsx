@@ -1,22 +1,14 @@
-import Glow from '@/components/Glow';
-import styles from './page.module.css';
+import styles from '@/components/landing/styles/Landing.module.css';
+import HeroSection from '@/components/landing/HeroSection';
+import FeaturesSection from '@/components/landing/FeaturesSection';
+import Footer from '@/components/landing/Footer';
 
 export default function Home() {
   return (
     <div className={styles.landing}>
-      <div className={styles.hero}>
-        <Glow />
-        <div className={styles.content}>
-          <h1>
-            <div>Paste. Learn. Remember.</div>
-            <div>Your AI-powered study companion</div>
-          </h1>
-          {/* <p>
-            Turn any textbook, lecture, or article into smart flashcards you can
-            actually remember.
-          </p> */}
-        </div>
-      </div>
+      <HeroSection />
+      <FeaturesSection />
+      <Footer />
     </div>
   );
 }

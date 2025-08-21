@@ -1,0 +1,13 @@
+.hero .content {
+  text-align: center;
+}
+
+.hero .content p {
+  opacity: 0.8;
+  color: var(--body-txt);
+  font-size: 1.2rem;
+  max-width: 435px;
+  margin: 1.5rem auto;
+  text-align: center;
+  display: block;
+}

@@ -149,6 +149,6 @@
   background-color: none;
 }
 .btn.text:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--black-dark-4-050);
   /* background-color: red; */
 }

@@ -3,6 +3,16 @@
   flex-direction: column;
 }
 
+.container.preview {
+  display: inline-block;
+  position: relative;
+  width: 650px;
+}
+
+.container.preview .btnText {
+  display: none;
+}
+
 .container textarea {
   font-family: var(--geins-sans);
   max-height: 500px;
@@ -19,6 +29,12 @@
   color: var(--teal-light-100);
 }
 
+.container.preview textarea {
+  font-size: 15px;
+  min-height: 125px;
+  width: 100%;
+}
+
 .sendContainer {
   border-radius: 5px;
   border: 2px solid var(--grey-2-025);
@@ -29,6 +45,9 @@
   display: flex;
   align-items: center;
   justify-content: right;
+}
+.preview .sendContainer {
+  background-color: var(--black-dark-4-025);
 }
 
 .sendContainer .btnText {
@@ -55,6 +74,10 @@
 
 .sendContainer:not(.loading) button:hover {
   background-color: var(--black-dark-2-100);
+}
+
+.preview .sendContainer button:hover {
+  background: none;
 }
 
 .sendContainer.loading button {

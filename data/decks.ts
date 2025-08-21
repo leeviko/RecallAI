@@ -6,7 +6,7 @@ import { instructions, openai } from '@/lib/openai';
 import {
   DeckResponse,
   deckResponseSchema,
-  DeckWithCards,
+  GeneratedDeckWithCards,
 } from '@/lib/schemas/flashcards';
 import prisma from '@/lib/prisma';
 import { FlashcardType } from '@prisma/client';
@@ -30,7 +30,7 @@ type AddDeckResponse =
   | {
       ok: true;
       msg: string;
-      data: DeckWithCards;
+      data: GeneratedDeckWithCards;
     };
 
 /**

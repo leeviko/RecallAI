@@ -35,9 +35,12 @@
   --black-dark-2-100: rgb(var(--black-dark-2-rgb));
   --black-dark-2-080: rgba(var(--black-dark-2-rgb), 0.8);
   --black-dark-2-050: rgba(var(--black-dark-2-rgb), 0.5);
+  --black-dark-2-025: rgba(var(--black-dark-2-rgb), 0.25);
   --black-dark-3-rgb: 35, 37, 37;
   --black-dark-3-100: rgb(var(--black-dark-3-rgb));
   --black-dark-3-080: rgba(var(--black-dark-3-rgb), 0.8);
+  --black-dark-3-050: rgba(var(--black-dark-3-rgb), 0.5);
+  --black-dark-3-025: rgba(var(--black-dark-3-rgb), 0.25);
   --black-dark-4-rgb: 44, 44, 44;
   --black-dark-4-100: rgb(var(--black-dark-4-rgb));
   --black-dark-4-080: rgba(var(--black-dark-4-rgb), 0.8);

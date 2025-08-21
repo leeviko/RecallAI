@@ -1,0 +1,64 @@
+.qa {
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 1rem auto;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.4, 2, 0.6, 1);
+  transform-style: preserve-3d;
+}
+
+.flipped .content {
+  transform: rotateX(180deg);
+}
+
+.frontCard,
+.backCard {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  background-color: var(--black-dark-2-025);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+
+.frontCard {
+  z-index: 2;
+}
+
+.backCard {
+  transform: rotateX(180deg);
+}
+
+.question,
+.answer {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.prompt {
+  font-size: 1rem;
+  color: var(--teal-light-050);
+}
+
+.qa.flipped .frontCard p {
+  opacity: 0;
+}
+
+.qa:not(.flipped) .backCard p {
+  opacity: 0;
+}

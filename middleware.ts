@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { verifySession } from './data/users';
 
-const protectedRoutes = ['/dashboard', '/generate'];
+const protectedRoutes = ['/dashboard', '/generate', '/deck'];
 const authRoutes = ['/login', '/register'];
 
 export async function middleware(request: NextRequest) {
@@ -9,7 +9,10 @@ export async function middleware(request: NextRequest) {
   const isAuthenticated = await verifySession(request);
 
   const isAuthPage = authRoutes.includes(pathname);
-  const isProtectedPage = protectedRoutes.includes(pathname);
+
+  const isProtectedPage = protectedRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
 
   if (isAuthenticated && pathname === '/') {
     return NextResponse.redirect(new URL('/dashboard', request.url));

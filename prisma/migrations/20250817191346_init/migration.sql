@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "public"."FlashcardType" AS ENUM ('QA', 'MULTICHOICE', 'TRUEFALSE');
+CREATE TYPE "public"."FlashcardType" AS ENUM ('QA', 'MULTICHOICE', 'YA');
 
 -- CreateTable
 CREATE TABLE "public"."flashcard" (

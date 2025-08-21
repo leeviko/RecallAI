@@ -18,8 +18,7 @@ model Flashcard {
   userId         String
   type           FlashcardType
   question       String
-  answer         String[]        
-  correct        Boolean?       // For true/false
+  answer         String        
   choices        String[]       @default([]) // For multichoice
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt

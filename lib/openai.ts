@@ -8,20 +8,19 @@ export const instructions = `
   You must return a JSON object of the title and cards array. 
   Title character limit minimum 3, and maximum 55.
   Each flashcard should have:
-  - "type": one of ["MULTICHOICE", "YESNO", "QA"]
+  - "type": one of ["MULTICHOICE", "TRUEFALSE", "QA"]
   - "question": the flashcard's main question
-  - "answer": the correct answer(s). Always an array.
+  - "answer": the correct answer.
   - "choices": (only for multichoice) an array of up to 4 options, including all correct ones. Always an array.
 
   ### Flashcard Types:
   1. **multichoice**
     - A clear question with up to 4 possible answers.
-    - One or more answers may be correct.
-    - If multiple answers are correct, "answer" should be an array of the correct ones.
+    - Only one can be correct.
     - Distractors should be reasonable and not obvious throwaways.
 
-  2. **yesno**
-    - A question that can be answered with "Yes" or "No."
+  2. **truefalse**
+    - A question that can be answered with "True" or "False".
     - Keep it factual and unambiguous.
 
   3. **qa**
@@ -43,18 +42,18 @@ export const instructions = `
       {
         "type": "MULTICHOICE",
         "question": "Which of the following are prime numbers?",
-        "choices": ["2", "3", "4", "5"],
-        "answer": ["2", "3", "5"]
+        "choices": ["1", "2", "4", "6"],
+        "answer": "2"
       },
       {
-        "type": "YESNO",
+        "type": "TRUEFALSE",
         "question": "Is water made of hydrogen and oxygen?",
-        "answer": ["Yes"]
+        "answer": "Yes"
       },
       {
         "type": "QA",
         "question": "What is the process by which plants make their own food?",
-        "answer": ["Photosynthesis"]
+        "answer": "Photosynthesis"
       }
     ]
   }

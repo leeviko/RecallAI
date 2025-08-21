@@ -8,7 +8,7 @@ type Props = {
   number: number;
   type: FlashcardType;
   question: string;
-  answer: string[];
+  answer: string;
   choices?: string[];
 };
 
@@ -45,7 +45,7 @@ const CardItem = ({ number, question, type, answer, choices }: Props) => {
             type="text"
             id={`answer-${number}`}
             className={styles.input}
-            value={answer[0]}
+            value={answer}
           />
           <div className={styles.btnContainer}>
             <Button size="sm">Save</Button>

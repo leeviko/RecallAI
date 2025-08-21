@@ -6,8 +6,8 @@ import Button from '../buttons/Button';
 import Image from 'next/image';
 import { addDeck } from '@/data/decks';
 import { useState } from 'react';
-import LoaderInline from '../loader/LoaderInline';
 import { toast } from 'sonner';
+import { redirect } from 'next/navigation';
 
 type Props = {
   data: DeckResponse;
@@ -22,6 +22,7 @@ const Overview = ({ data }: Props) => {
 
     if (response.ok) {
       toast.success('Deck saved successfully!');
+      redirect(`/deck/${response.data.id}`);
     } else {
       toast.error('Failed to save deck.');
     }

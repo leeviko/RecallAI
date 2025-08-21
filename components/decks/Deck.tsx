@@ -11,7 +11,8 @@ type Props = {
 
 const Deck = ({ deck }: Props) => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const percentage = ((currentCardIndex + 1) / deck.cards.length) * 100;
+  const totalCards = deck.cards.length;
+  const percentage = ((currentCardIndex + 1) / totalCards) * 100;
 
   const handlePrevClick = () => {
     if (currentCardIndex > 0) {
@@ -42,8 +43,11 @@ const Deck = ({ deck }: Props) => {
       </div>
       <div className={styles.actions}>
         <button
-          className={`${styles.navBtn} ${styles.prevBtn}`}
+          className={`${styles.navBtn} ${styles.prevBtn} ${
+            currentCardIndex === 0 ? styles.disabled : ''
+          }`}
           onClick={handlePrevClick}
+          disabled={currentCardIndex === 0}
         >
           <Image
             src="/icons/arrow-full.svg"
@@ -53,8 +57,11 @@ const Deck = ({ deck }: Props) => {
           />
         </button>
         <button
-          className={`${styles.navBtn} ${styles.nextBtn}`}
+          className={`${styles.navBtn} ${styles.nextBtn} ${
+            currentCardIndex === totalCards - 1 ? styles.disabled : ''
+          }`}
           onClick={handleNextClick}
+          disabled={currentCardIndex === totalCards - 1}
         >
           <Image
             src="/icons/arrow-full.svg"
@@ -67,7 +74,7 @@ const Deck = ({ deck }: Props) => {
       <div className={styles.stats}>
         <div className={styles.progress}>
           <span className={styles.progressText}>
-            Card {currentCardIndex + 1} of {deck.cards.length}
+            Card {currentCardIndex + 1} of {totalCards}
           </span>
           <div className={styles.progressBar} style={{ width: `100%` }}>
             <div

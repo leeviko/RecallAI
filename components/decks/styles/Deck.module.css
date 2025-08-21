@@ -43,7 +43,12 @@
   border: none;
 }
 
-.actions button:hover {
+.actions button.disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.actions button:not(.disabled):hover {
   opacity: 1;
   transform: scale(1.1);
 }
@@ -68,4 +73,5 @@
   border-radius: 5px;
   background-color: var(--accent);
   height: 100%;
+  transition: width 0.2s ease-in-out;
 }

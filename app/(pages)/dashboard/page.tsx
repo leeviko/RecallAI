@@ -1,11 +1,88 @@
+import StatCard from '@/components/StatCard';
+import styles from './Dashboard.module.css';
 import Button from '@/components/buttons/Button';
+import DeckCard from '@/components/decks/DeckCard';
+import { apiFetch } from '@/lib/api-client';
+import { DeckWithCards } from '@/lib/schemas/flashcards';
 
-const Page = () => {
+const Page = async () => {
+  const result = await apiFetch<DeckWithCards[]>('/api/decks');
+  console.log(result);
+
+  if (!result.ok) {
+    return <div>No decks found</div>;
+  }
+
   return (
-    <div>
-      <Button color="accent-dark" variant="fill" href="/create">
-        Create new deck
-      </Button>
+    <div className={styles.page}>
+      <div className={styles.header}>
+        <div className={styles.left}>
+          <h2>Dashboard</h2>
+          <p>View and manage your decks</p>
+        </div>
+        <div>
+          <Button color="accent-dark" variant="fill" size="sm" href="/create">
+            Create new deck
+          </Button>
+        </div>
+      </div>
+      <div className={styles.stats}>
+        <StatCard
+          title="Total Decks"
+          value={result.data.length}
+          icon="/icons/book.svg"
+        />
+        <StatCard
+          title="Total Cards"
+          value={result.data.reduce((acc, deck) => acc + deck.cards.length, 0)}
+          icon="/icons/book.svg"
+        />
+        <StatCard title="Avg Progress" value={'1%'} icon="/icons/book.svg" />
+      </div>
+      <div className={styles.decks}>
+        <h2>Your Decks</h2>
+        <div className={styles.deckList}>
+          {result.data.map((deck) => (
+            <DeckCard
+              key={deck.id}
+              name={deck.name}
+              id={deck.id}
+              numOfCards={deck.cards.length}
+              createdAt="Jan 20"
+              progress={25}
+            />
+          ))}
+
+          {/* <DeckCard
+            name="Spanish Vocabulary - Beginner"
+            createdAt="2023-01-01"
+            id="1"
+            numOfCards={10}
+            progress={0}
+          />
+          <DeckCard
+            name="JavaScript Fundamentals"
+            createdAt="2023-01-02"
+            id="2"
+            numOfCards={15}
+            progress={50}
+          />
+          <DeckCard
+            name="Biology - Cell Structure"
+            createdAt="2023-01-03"
+            id="3"
+            numOfCards={20}
+            progress={100}
+          />
+          <DeckCard
+            name="Biology - Cell Structure"
+            createdAt="2023-01-03"
+            id="3"
+            numOfCards={20}
+            progress={100}
+          /> */}
+        </div>
+      </div>
     </div>
   );
 };

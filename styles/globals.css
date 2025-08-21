@@ -1,6 +1,16 @@
 :root {
   --grey: #b7c0cc;
+
   --blue: #495fc3;
+
+  --blue-2-rgb: 39, 93, 162;
+  --blue-2-100: rgb(var(--blue-2-rgb));
+  --blue-2-050: rgba(var(--blue-2-rgb), 0.5);
+
+  --blue-3-rgb: 32, 76, 134;
+  --blue-3-100: rgb(var(--blue-3-rgb));
+  --blue-3-050: rgba(var(--blue-3-rgb), 0.5);
+
   --purple-dark-rgb: 132, 39, 162;
   --purple-dark-100: rgb(var(--purple-dark-rgb));
   --purple-dark-050: rgba(var(--purple-dark-rgb), 0.5);
@@ -23,6 +33,7 @@
   --teal-light-080: rgba(var(--teal-light-rgb), 0.8);
   --teal-light-050: rgba(var(--teal-light-rgb), 0.5);
   --teal-light-025: rgba(var(--teal-light-rgb), 0.25);
+  --teal-light-010: rgba(var(--teal-light-rgb), 0.1);
 
   --grey-2-100-rgb: 93, 93, 93;
   --grey-2-100: rgb(var(--grey-2-100-rgb));
@@ -36,11 +47,13 @@
   --black-dark-2-080: rgba(var(--black-dark-2-rgb), 0.8);
   --black-dark-2-050: rgba(var(--black-dark-2-rgb), 0.5);
   --black-dark-2-025: rgba(var(--black-dark-2-rgb), 0.25);
+
   --black-dark-3-rgb: 35, 37, 37;
   --black-dark-3-100: rgb(var(--black-dark-3-rgb));
   --black-dark-3-080: rgba(var(--black-dark-3-rgb), 0.8);
   --black-dark-3-050: rgba(var(--black-dark-3-rgb), 0.5);
   --black-dark-3-025: rgba(var(--black-dark-3-rgb), 0.25);
+
   --black-dark-4-rgb: 44, 44, 44;
   --black-dark-4-100: rgb(var(--black-dark-4-rgb));
   --black-dark-4-080: rgba(var(--black-dark-4-rgb), 0.8);

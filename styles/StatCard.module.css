@@ -1,0 +1,22 @@
+.card {
+  background: var(--black-dark-2-025);
+  padding: 1.5rem 2rem;
+  border-radius: 5px;
+  border: 2px solid var(--teal-light-010);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* max-width: 300px; */
+}
+
+.card h3 {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+.card p {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--accent);
+}

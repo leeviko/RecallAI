@@ -4,6 +4,7 @@ import Flashcard from './Flashcard';
 import styles from './styles/Deck.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
+import ProgressBar from '../ProgressBar';
 
 type Props = {
   deck: DeckWithCards;
@@ -76,12 +77,7 @@ const Deck = ({ deck }: Props) => {
           <span className={styles.progressText}>
             Card {currentCardIndex + 1} of {totalCards}
           </span>
-          <div className={styles.progressBar} style={{ width: `100%` }}>
-            <div
-              className={styles.progressFill}
-              style={{ width: `${percentage}%` }}
-            ></div>
-          </div>
+          <ProgressBar progress={percentage} color="var(--accent)" />
         </div>
       </div>
     </div>

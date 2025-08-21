@@ -62,6 +62,19 @@
   background: rgb(219, 219, 219);
 }
 
+/* BLUE FILL */
+.btn.fill.blue {
+  color: white;
+  background: var(--blue-2-100);
+}
+.btn.fill.blue:hover {
+  background: var(--blue-3-100);
+}
+.btn.fill.blue:disabled {
+  color: rgba(255, 255, 255, 0.5);
+  background: var(--blue-2-050);
+}
+
 /* ACCENT LIGHT FILL */
 .btn.fill.accent-light {
   background: var(--purple-light-100);
@@ -126,6 +139,21 @@
   color: var(--purple-dark-050);
   background: none;
   border-color: var(--purple-dark-050);
+}
+
+/* BLUE OUTLINE */
+.btn.outline.blue {
+  border: 2px solid var(--blue-2-100);
+  color: white;
+}
+.btn.outline.blue:hover {
+  background: var(--blue-3-100);
+  border-color: var(--blue-3-100);
+}
+.btn.outline.blue:disabled {
+  color: var(--blue-2-050);
+  background: none;
+  border-color: var(--blue-2-050);
 }
 
 /* DANGER OUTLINE */

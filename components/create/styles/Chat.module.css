@@ -23,9 +23,9 @@
   padding: 0.75rem;
   font-size: 0.9rem;
   resize: none;
-  border: 2px solid var(--grey-2-025);
+  border: 2px solid var(--teal-light-010);
   border-bottom: none;
-  background-color: var(--black-dark-4-025);
+  background-color: var(--black-dark-2-025);
   color: var(--teal-light-100);
 }
 
@@ -37,7 +37,7 @@
 
 .sendContainer {
   border-radius: 5px;
-  border: 2px solid var(--grey-2-025);
+  border: 2px solid var(--teal-light-010);
   border-top: none;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
@@ -47,7 +47,7 @@
   justify-content: right;
 }
 .preview .sendContainer {
-  background-color: var(--black-dark-4-025);
+  background-color: var(--black-dark-2-025);
 }
 
 .sendContainer .btnText {

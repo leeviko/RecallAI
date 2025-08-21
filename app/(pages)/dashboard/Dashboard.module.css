@@ -1,0 +1,42 @@
+.page {
+  width: 60%;
+  height: 100%;
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page h2 {
+  font-size: 2rem;
+}
+
+.header p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin: 1rem 0;
+}
+
+.decks {
+  margin-top: 3rem;
+}
+
+.deckList {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}

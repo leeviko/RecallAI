@@ -1,0 +1,27 @@
+.card {
+  background-color: var(--black-dark-2-025);
+  border: 2px solid var(--teal-light-010);
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.details {
+  margin: 2rem 0;
+}
+
+.numOfCards {
+  font-size: 0.9rem;
+}
+
+.dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}

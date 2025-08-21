@@ -1,0 +1,13 @@
+.progressBar {
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  background-color: var(--black-dark-2-025);
+  height: 0.5rem;
+}
+
+.progressFill {
+  border-radius: 5px;
+  background-color: var(--accent);
+  height: 100%;
+  transition: width 0.2s ease-in-out;
+}

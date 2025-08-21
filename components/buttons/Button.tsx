@@ -3,7 +3,7 @@ import styles from './styles/Button.module.css';
 
 type Props = {
   variant?: 'text' | 'fill' | 'outline';
-  color?: 'accent-light' | 'accent-dark' | 'danger' | 'white';
+  color?: 'accent-light' | 'accent-dark' | 'danger' | 'white' | 'blue';
   size?: 'xs' | 'sm' | 'md' | 'lg';
   width?: 'default' | 'w-full';
   disabled?: boolean;

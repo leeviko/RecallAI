@@ -3,12 +3,18 @@
   border: 2px solid var(--teal-light-010);
   border-radius: 5px;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .numOfCards {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
   font-size: 0.9rem;
+}
+
+.info {
+  margin-top: auto;
 }
 
 .dates {

@@ -16,17 +16,19 @@ const DeckCard = ({ id, name, createdAt, numOfCards }: Props) => {
       <p className={styles.numOfCards}>
         <Tag>{numOfCards} Cards</Tag>
       </p>
-      <div className={styles.actions}>
-        <Button variant="fill" color="blue" size="sm" href={`/deck/${id}`}>
-          Study
-        </Button>
-        <Button variant="outline" color="blue" size="sm" href={`/deck/${id}`}>
-          Edit
-        </Button>
-      </div>
-      <div className={styles.dates}>
-        <span>Created Jan 20</span>
-        <span>Studied Jan 20</span>
+      <div className={styles.info}>
+        <div className={styles.actions}>
+          <Button variant="fill" color="blue" size="sm" href={`/deck/${id}`}>
+            Study
+          </Button>
+          <Button variant="outline" color="blue" size="sm" href={`/deck/${id}`}>
+            Edit
+          </Button>
+        </div>
+        <div className={styles.dates}>
+          <span>Created Jan 20</span>
+          <span>Studied Jan 20</span>
+        </div>
       </div>
     </div>
   );

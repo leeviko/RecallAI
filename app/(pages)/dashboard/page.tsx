@@ -36,7 +36,16 @@ const Page = async () => {
           value={result.data.reduce((acc, deck) => acc + deck.cards.length, 0)}
           icon="/icons/book.svg"
         />
-        <StatCard title="Avg Progress" value={'1%'} icon="/icons/book.svg" />
+        <StatCard
+          title="Study Time"
+          value={'21h 34mins'}
+          icon="/icons/book.svg"
+        />
+        <StatCard
+          title="Last studied"
+          value={'Jan 20 2025'}
+          icon="/icons/book.svg"
+        />
       </div>
       <div className={styles.decks}>
         <h2>Your Decks</h2>

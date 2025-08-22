@@ -7,7 +7,6 @@ import { DeckWithCards } from '@/lib/schemas/flashcards';
 
 const Page = async () => {
   const result = await apiFetch<DeckWithCards[]>('/api/decks');
-  console.log(result);
 
   if (!result.ok) {
     return <div>No decks found</div>;
@@ -49,38 +48,8 @@ const Page = async () => {
               id={deck.id}
               numOfCards={deck.cards.length}
               createdAt="Jan 20"
-              progress={25}
             />
           ))}
-
-          {/* <DeckCard
-            name="Spanish Vocabulary - Beginner"
-            createdAt="2023-01-01"
-            id="1"
-            numOfCards={10}
-            progress={0}
-          />
-          <DeckCard
-            name="JavaScript Fundamentals"
-            createdAt="2023-01-02"
-            id="2"
-            numOfCards={15}
-            progress={50}
-          />
-          <DeckCard
-            name="Biology - Cell Structure"
-            createdAt="2023-01-03"
-            id="3"
-            numOfCards={20}
-            progress={100}
-          />
-          <DeckCard
-            name="Biology - Cell Structure"
-            createdAt="2023-01-03"
-            id="3"
-            numOfCards={20}
-            progress={100}
-          /> */}
         </div>
       </div>
     </div>

@@ -11,6 +11,16 @@
   --blue-3-100: rgb(var(--blue-3-rgb));
   --blue-3-050: rgba(var(--blue-3-rgb), 0.5);
 
+  --green-rgb: 52, 168, 83;
+  --green-100: rgb(var(--green-rgb));
+  --green-050: rgba(var(--green-rgb), 0.5);
+  --green-025: rgba(var(--green-rgb), 0.25);
+
+  --red-rgb: 168, 52, 52;
+  --red-100: rgb(var(--red-rgb));
+  --red-050: rgba(var(--red-rgb), 0.5);
+  --red-025: rgba(var(--red-rgb), 0.25);
+
   --purple-dark-rgb: 132, 39, 162;
   --purple-dark-100: rgb(var(--purple-dark-rgb));
   --purple-dark-050: rgba(var(--purple-dark-rgb), 0.5);

@@ -89,6 +89,7 @@ export async function addDeck(deck: DeckResponse): Promise<AddDeckResponse> {
             answer: card.answer,
             type: card.type as FlashcardType,
             userId: session.user.id,
+            choices: card.choices ? card.choices : [],
           })),
         },
         user: {

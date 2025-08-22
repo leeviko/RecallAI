@@ -11,9 +11,10 @@ import { redirect } from 'next/navigation';
 
 type Props = {
   data: DeckResponse;
+  setData: React.Dispatch<React.SetStateAction<DeckResponse | null>>;
 };
 
-const Overview = ({ data }: Props) => {
+const Overview = ({ data, setData }: Props) => {
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
     setLoading(true);
@@ -45,7 +46,7 @@ const Overview = ({ data }: Props) => {
       </div>
       <div className={styles.list}>
         {data.cards.map((card, i) => (
-          <CardItem key={i} {...card} number={i + 1} />
+          <CardItem key={i} {...card} number={i + 1} setData={setData} />
         ))}
       </div>
     </div>

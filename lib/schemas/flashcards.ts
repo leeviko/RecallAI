@@ -17,6 +17,10 @@ const flashcardSchema = z.object({
   choices: z.array(z.string()).max(4).optional(),
 });
 
+export const flashCardWithIdSchema = flashcardSchema.extend({
+  id: z.string(),
+});
+
 export const deckResponseSchema = z.object({
   title: z.string().min(3).max(55),
   cards: z.array(flashcardSchema),

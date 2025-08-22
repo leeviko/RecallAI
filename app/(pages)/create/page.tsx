@@ -14,7 +14,7 @@ const Page = () => {
       {!generated && (
         <CreateForm data={data} setData={setData} setGenerated={setGenerated} />
       )}
-      {generated && data && <Overview data={data} />}
+      {generated && data && <Overview data={data} setData={setData} />}
     </div>
   );
 };

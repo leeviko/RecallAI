@@ -3,6 +3,7 @@ import styles from './styles/CardItem.module.css';
 import { useState } from 'react';
 import Button from '../buttons/Button';
 import { FlashcardType } from '@prisma/client';
+import { DeckResponse, FlashcardResponse } from '@/lib/schemas/flashcards';
 
 type Props = {
   number: number;
@@ -10,10 +11,45 @@ type Props = {
   question: string;
   answer: string;
   choices?: string[];
+
+  setData: React.Dispatch<React.SetStateAction<DeckResponse | null>>;
 };
 
-const CardItem = ({ number, question, type, answer, choices }: Props) => {
+const CardItem = ({
+  number,
+  question,
+  type,
+  answer,
+  choices,
+  setData,
+}: Props) => {
+  const [newQuestion, setNewQuestion] = useState(question);
+  const [newAnswer, setNewAnswer] = useState(answer);
+  // const [newChoices, setNewChoices] = useState(choices)
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleUpdate = () => {
+    const updatedCard: FlashcardResponse = {
+      type,
+      question: newQuestion,
+      answer: newAnswer,
+      choices,
+    };
+
+    setData((prevData: DeckResponse | null) => {
+      if (!prevData) return null;
+
+      const updatedData: DeckResponse = {
+        ...prevData,
+        cards: prevData.cards.map((card, i) =>
+          i === number - 1 ? { ...card, ...updatedCard } : card
+        ),
+      };
+      return updatedData;
+    });
+
+    setIsOpen(false);
+  };
 
   return (
     <div className={styles.card}>
@@ -37,18 +73,22 @@ const CardItem = ({ number, question, type, answer, choices }: Props) => {
           <input
             type="text"
             id={`question-${number}`}
-            value={question}
+            value={newQuestion}
+            onChange={(e) => setNewQuestion(e.target.value)}
             className={styles.input}
           />
           <label htmlFor={`answer-${number}`}>Answer</label>
           <input
             type="text"
             id={`answer-${number}`}
+            value={newAnswer}
+            onChange={(e) => setNewAnswer(e.target.value)}
             className={styles.input}
-            value={answer}
           />
           <div className={styles.btnContainer}>
-            <Button size="sm">Save</Button>
+            <Button size="sm" onClick={handleUpdate}>
+              Save
+            </Button>
           </div>
         </div>
       )}

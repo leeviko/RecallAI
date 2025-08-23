@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './styles/Chat.module.css';
-import { generateDecks } from '@/lib/actions/decks';
+import { generateDeck } from '@/lib/actions/decks';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { DeckResponse } from '@/lib/schemas/flashcards';
@@ -22,13 +22,13 @@ const Chat = ({ data, setData, setGenerated }: Props) => {
     }
 
     setLoading(true);
-    const response = await generateDecks(prompt);
+    const response = await generateDeck(prompt);
     setLoading(false);
     if (response.ok && response.data) {
       toast.success('Flashcards generated successfully!');
       setData(response.data);
       setGenerated(true);
-    } else {
+    } else if (!response.ok) {
       toast.error(response.msg);
       console.error(response.msg);
     }

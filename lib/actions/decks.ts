@@ -10,29 +10,19 @@ import {
 } from '@/lib/schemas/flashcards';
 import prisma from '../prisma';
 import { FlashcardType } from '@prisma/client';
-
-type GenerateDeckResponse =
-  | {
-      ok: false;
-      msg: string;
-    }
-  | {
-      ok: true;
-      msg: string;
-      data: DeckResponse;
-    };
+import { APIResponse } from '../api-client';
 
 /**
  * Generate a new deck of flashcards using OpenAI.
  * @param prompt The prompt to generate flashcards from.
  */
-export async function generateDecks(
+export async function generateDeck(
   prompt: string
-): Promise<GenerateDeckResponse> {
+): Promise<APIResponse<DeckResponse>> {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  if (!session) return { ok: false, msg: 'Unauthorized' };
+  if (!session) return { ok: false, msg: 'Unauthorized', status: 401 };
 
   const response = await openai.responses.create({
     model: 'gpt-4o-mini',
@@ -47,37 +37,31 @@ export async function generateDecks(
   if (!validatedOutput.success) {
     console.error('Invalid output:', validatedOutput.error);
     console.log(output);
-    return { ok: false, msg: 'Failed to generate valid flashcards' };
+    return {
+      ok: false,
+      msg: 'Failed to generate valid flashcards',
+      status: 500,
+    };
   }
 
   console.log(validatedOutput.data);
   return {
     ok: true,
-    msg: 'Flashcards generated successfully',
     data: validatedOutput.data,
   };
 }
-
-type AddDeckResponse =
-  | {
-      ok: false;
-      msg: string;
-    }
-  | {
-      ok: true;
-      msg: string;
-      data: GeneratedDeckWithCards;
-    };
 
 /**
  * Add new deck to the database.
  * @param deck The deck to add.
  */
-export async function addDeck(deck: DeckResponse): Promise<AddDeckResponse> {
+export async function addDeck(
+  deck: DeckResponse
+): Promise<APIResponse<GeneratedDeckWithCards>> {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  if (!session) return { ok: false, msg: 'Unauthorized' };
+  if (!session) return { ok: false, msg: 'Unauthorized', status: 401 };
 
   try {
     const result = await prisma.deck.create({
@@ -105,12 +89,12 @@ export async function addDeck(deck: DeckResponse): Promise<AddDeckResponse> {
 
     if (!result) {
       console.log('Failed to create deck:', deck);
-      return { ok: false, msg: 'Failed to add deck' };
+      return { ok: false, msg: 'Failed to add deck', status: 500 };
     }
 
-    return { ok: true, msg: 'Deck added successfully', data: result };
+    return { ok: true, data: result };
   } catch (err) {
     console.error('Error adding deck:', err);
-    return { ok: false, msg: 'Failed to add deck' };
+    return { ok: false, msg: 'Failed to add deck', status: 500 };
   }
 }

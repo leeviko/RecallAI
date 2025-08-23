@@ -1,6 +1,6 @@
 'use client';
 import { signOut } from '@/lib/auth-client';
-import styles from '@/styles/UserMenu.module.css';
+import styles from './styles/UserMenu.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';

@@ -2,7 +2,7 @@
 import { useSession } from '@/lib/auth-client';
 import styles from './styles/NavLinks.module.css';
 import Link from 'next/link';
-import Avatar from '../Avatar';
+import Avatar from '../ui/Avatar';
 
 const NavLinks = () => {
   const { data: session, isPending } = useSession();

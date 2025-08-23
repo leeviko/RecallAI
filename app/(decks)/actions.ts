@@ -8,9 +8,9 @@ import {
   deckResponseSchema,
   GeneratedDeckWithCards,
 } from '@/lib/schemas/flashcards';
-import prisma from '../prisma';
+import prisma from '@/lib/prisma';
 import { FlashcardType } from '@prisma/client';
-import { APIResponse } from '../api-client';
+import { APIResponse } from '@/lib/api-client';
 
 /**
  * Generate a new deck of flashcards using OpenAI.

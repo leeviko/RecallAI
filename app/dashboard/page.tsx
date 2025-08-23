@@ -1,4 +1,4 @@
-import StatCard from '@/components/StatCard';
+import StatCard from '@/components/ui/StatCard';
 import styles from './Dashboard.module.css';
 import Button from '@/components/buttons/Button';
 import DeckCard from '@/components/decks/DeckCard';

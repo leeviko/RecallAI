@@ -1,5 +1,5 @@
 import Button from '../buttons/Button';
-import Tag from '../Tag';
+import Tag from '../ui/Tag';
 import styles from './styles/DeckCard.module.css';
 
 type Props = {

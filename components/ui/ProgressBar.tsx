@@ -1,4 +1,4 @@
-import styles from '@/styles/ProgressBar.module.css';
+import styles from './styles/ProgressBar.module.css';
 import React from 'react';
 
 type Props = {

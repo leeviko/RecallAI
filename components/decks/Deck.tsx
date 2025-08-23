@@ -4,7 +4,7 @@ import Flashcard from './Flashcard';
 import styles from './styles/Deck.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
-import ProgressBar from '../ProgressBar';
+import ProgressBar from '../ui/ProgressBar';
 
 type Props = {
   deck: DeckWithCards;

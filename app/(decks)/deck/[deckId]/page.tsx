@@ -1,6 +1,6 @@
 import Deck from '@/components/decks/Deck';
-import styles from './DeckPage.module.css';
-import { qaMockDeck, DeckWithCards } from '@/lib/schemas/flashcards';
+import styles from '@/components/decks/styles/DeckPage.module.css';
+import { DeckWithCards } from '@/lib/schemas/flashcards';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';

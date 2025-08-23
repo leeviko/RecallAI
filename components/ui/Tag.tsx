@@ -1,4 +1,4 @@
-import styles from '@/styles/Tag.module.css';
+import styles from './styles/Tag.module.css';
 type Props = {
   children: React.ReactNode;
   hex?: string;

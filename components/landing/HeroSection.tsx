@@ -1,5 +1,5 @@
 import ChatPreview from '../create/ChatPreview';
-import Glow from '../Glow';
+import Glow from '../ui/Glow';
 import styles from './styles/HeroSection.module.css';
 
 const HeroSection = () => {

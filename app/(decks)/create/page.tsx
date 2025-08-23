@@ -2,7 +2,7 @@
 import CreateForm from '@/components/create/CreateForm';
 import Overview from '@/components/create/Overview';
 import { DeckResponse } from '@/lib/schemas/flashcards';
-import styles from '@/styles/CreatePage.module.css';
+import styles from '@/components/create/styles/CreatePage.module.css';
 import { useState } from 'react';
 
 const Page = () => {

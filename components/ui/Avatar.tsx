@@ -1,7 +1,7 @@
 'use client';
 import { useRef, useState } from 'react';
-import styles from '@/styles/Avatar.module.css';
-import UserMenu from '@/components/UserMenu';
+import styles from './styles/Avatar.module.css';
+import UserMenu from '@/components/ui/UserMenu';
 import useClickOutside from '@/hooks/useClickOutside';
 import Image from 'next/image';
 

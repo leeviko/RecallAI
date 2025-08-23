@@ -1,10 +1,10 @@
 'use client';
 import Button from '@/components/buttons/Button';
 import InputField from '@/components/forms/InputField';
-import Glow from '@/components/Glow';
+import Glow from '@/components/ui/Glow';
 import LoaderInline from '@/components/loader/LoaderInline';
 import { signIn } from '@/lib/auth-client';
-import styles from '@/styles/Auth.module.css';
+import styles from '../Auth.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';

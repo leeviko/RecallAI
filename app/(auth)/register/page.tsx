@@ -58,16 +58,12 @@ const Page = () => {
       provider: 'google',
     });
 
-    setLoading(false);
-
     if (data.error) {
+      setLoading(false);
       console.log('Google login error', data.error);
       toast.error(data.error.message || 'Failed to login with Google');
       return;
     }
-
-    router.refresh();
-    toast.success('Logged in successfully');
   };
 
   return (

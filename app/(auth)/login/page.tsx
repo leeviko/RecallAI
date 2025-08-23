@@ -66,13 +66,11 @@ const Page = () => {
             value={email}
             handleChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            error={undefined}
           />
           <InputField
             value={password}
             handleChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            error={undefined}
           />
           <Button
             variant="fill"

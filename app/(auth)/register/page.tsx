@@ -77,19 +77,16 @@ const Page = () => {
             value={email}
             handleChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            error={undefined}
           />
           <InputField
             value={password}
             handleChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            error={undefined}
           />
           <InputField
             value={confirmPassword}
             handleChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm password"
-            error={undefined}
           />
           <Button
             variant="fill"

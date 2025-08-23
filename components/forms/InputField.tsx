@@ -5,7 +5,7 @@ type Props = {
   value: string | number;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  error: string | undefined;
+  error?: string;
 };
 
 const InputField = ({ value, handleChange, placeholder, error }: Props) => {

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './styles/Chat.module.css';
-import { generateDecks } from '@/data/decks';
+import { generateDecks } from '@/lib/actions/decks';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { DeckResponse } from '@/lib/schemas/flashcards';

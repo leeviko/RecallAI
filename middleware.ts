@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { verifySession } from './data/users';
+import { verifySession } from '@/lib/auth';
 
 const protectedRoutes = ['/dashboard', '/create', '/deck'];
 const authRoutes = ['/login', '/register'];

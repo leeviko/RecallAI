@@ -1,6 +1,6 @@
 import { headers } from 'next/dist/server/request/headers';
 
-type APIResponse<T> =
+export type APIResponse<T> =
   | { ok: true; data: T }
   | { ok: false; msg: string; errors?: Record<string, any>; status: number };
 

@@ -8,7 +8,7 @@ import {
   deckResponseSchema,
   GeneratedDeckWithCards,
 } from '@/lib/schemas/flashcards';
-import prisma from '@/lib/prisma';
+import prisma from '../prisma';
 import { FlashcardType } from '@prisma/client';
 
 type GenerateDeckResponse =
@@ -20,17 +20,6 @@ type GenerateDeckResponse =
       ok: true;
       msg: string;
       data: DeckResponse;
-    };
-
-type AddDeckResponse =
-  | {
-      ok: false;
-      msg: string;
-    }
-  | {
-      ok: true;
-      msg: string;
-      data: GeneratedDeckWithCards;
     };
 
 /**
@@ -68,6 +57,17 @@ export async function generateDecks(
     data: validatedOutput.data,
   };
 }
+
+type AddDeckResponse =
+  | {
+      ok: false;
+      msg: string;
+    }
+  | {
+      ok: true;
+      msg: string;
+      data: GeneratedDeckWithCards;
+    };
 
 /**
  * Add new deck to the database.

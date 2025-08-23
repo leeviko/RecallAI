@@ -4,7 +4,7 @@ import Tag from '../Tag';
 import CardItem from '../decks/CardItem';
 import Button from '../buttons/Button';
 import Image from 'next/image';
-import { addDeck } from '@/data/decks';
+import { addDeck } from '@/lib/actions/decks';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';

@@ -1,72 +1,119 @@
+.wrapper {
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 15px;
+  padding: 3rem;
+}
+
 .container h2 {
-  font-size: 2rem;
+  color: var(--teal-light-080);
+  font-weight: 700;
 }
 
 .container p {
   color: var(--teal-light-050);
+  margin: 0;
 }
 
-.container .subtitle {
+.aiResponse {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-start;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  padding: 1rem;
   margin: 1rem 0;
-  margin-bottom: 2rem;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.25s ease,
+    max-height 0.25s ease;
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
 }
 
 .aiResponse.show,
 .aiResponse.loading {
+  opacity: 1;
+  max-height: 600px;
+  transform: translateY(0px);
   padding-top: 1rem;
   padding-bottom: 1rem;
-  opacity: 1;
 }
 
 .aiResponse:not(.show):not(.loading) {
-  opacity: 0;
-  height: 0;
-}
-
-.aiResponse.show {
-  min-width: 80%;
+  transform: translateY(-6px);
 }
 
 .aiResponse.loading {
-  min-width: 50%;
-  opacity: 0.7;
+  max-height: 100px;
+  opacity: 0.9;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
 }
 
-.aiResponse {
-  min-width: 50%;
-  width: min-content;
-  background: var(--black-dark-2-025);
-  border-radius: 5px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin: 1rem 0;
-  transition: padding 0.2s ease-in-out, opacity 0.2s ease-in-out,
-    min-width 0.2s ease-in-out;
+.aiResponse.error {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 40, 60, 0.04),
+    rgba(255, 40, 60, 0.02)
+  );
+  border-color: rgba(255, 40, 60, 0.1);
+}
+.aiResponse.error p {
+  color: #ffb3b3;
 }
 
 .aiLabel {
-  font-size: 0.8rem;
+  gap: 0.5rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--teal-light-080);
-  margin-bottom: 0.25rem;
-  opacity: 0.8;
+  opacity: 0.95;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(11, 78, 78, 0.1);
+  border: 1px solid rgba(11, 78, 78, 0.1);
 }
 
 .aiResponse p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--teal-light-080);
+  line-height: 1.45;
+  margin: 0;
+  word-break: break-word;
 }
 
 .help {
   margin-top: 1.25rem;
+  display: flex;
 }
 
 .helpContent {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin: 0.25rem 0;
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .help p {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  margin: 0;
+  color: var(--teal-light-050);
 }

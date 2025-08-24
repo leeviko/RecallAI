@@ -1,6 +1,7 @@
 .page {
   margin-top: 3rem;
-  width: 650px;
+  width: 75%;
+  max-width: 850px;
   margin-left: auto;
   margin-right: auto;
 }

@@ -33,6 +33,7 @@ const CreateForm = ({
           }`}
         >
           <div className={styles.aiLabel}>🤖 AI Response</div>
+
           {isResponseString && !loading && (
             <p>{isErrorResponse ? response.slice(7) : response}</p>
           )}

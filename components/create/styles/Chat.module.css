@@ -17,15 +17,20 @@
   font-family: var(--geins-sans);
   max-height: 500px;
   min-height: 150px;
-  border-radius: 5px;
+  border-radius: 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  border-bottom: none !important;
   padding: 0.75rem;
   font-size: 0.9rem;
   resize: none;
-  border: none;
-  background-color: var(--black-dark-2-025);
   color: var(--teal-light-080);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .preview textarea {
@@ -37,11 +42,12 @@
 }
 
 .sendContainer {
-  border-radius: 5px;
-  border-top: none;
+  border-radius: 10px;
+  border-top: none !important;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
-  background-color: var(--black-dark-2-025);
+  background-color: var(--black-dark-3-025);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   display: flex;
   align-items: center;
   justify-content: right;
@@ -54,7 +60,7 @@
 }
 
 .sendContainer .btnText {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   margin-right: 0.5rem;
   font-size: 0.9rem;
 }

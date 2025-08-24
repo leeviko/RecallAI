@@ -8,19 +8,36 @@
 
 .container .subtitle {
   margin: 1rem 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.aiResponse.show {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .aiResponse {
+  width: min-content;
+  min-width: 75%;
   background: var(--black-dark-2-025);
-  border: 2px solid var(--teal-light-010);
   border-radius: 5px;
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   margin: 1rem 0;
+  transition: padding 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.aiLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--teal-light-080);
+  margin-bottom: 0.25rem;
+  opacity: 0.8;
 }
 
 .aiResponse p {
-  color: var(--teal-light-100);
+  font-size: 0.9rem;
+  color: var(--teal-light-080);
 }
 
 .footer {

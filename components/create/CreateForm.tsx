@@ -9,6 +9,9 @@ type Props = {
 };
 
 const CreateForm = ({ data, setData, setGenerated }: Props) => {
+  const isResponseString = typeof data === 'string';
+  const isErrorResponse = isResponseString && data.startsWith('Error');
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -16,11 +19,18 @@ const CreateForm = ({ data, setData, setGenerated }: Props) => {
         <p className={styles.subtitle}>
           Use the power of AI to create personalized flashcards effortlessly.
         </p>
-        {typeof data === 'string' && (
-          <div className={styles.aiResponse}>
-            <p>{data}</p>
-          </div>
-        )}
+        <div
+          className={`${styles.aiResponse} ${
+            isErrorResponse ? styles.error : ''
+          } ${isResponseString ? styles.show : ''}`}
+        >
+          {isResponseString && (
+            <>
+              <div className={styles.aiLabel}>🤖 AI Response</div>
+              <p>{isErrorResponse ? data.slice(7) : data}</p>
+            </>
+          )}
+        </div>
         <Chat data={data} setData={setData} setGenerated={setGenerated} />
         <div className={styles.footer}>
           <h3>Help</h3>

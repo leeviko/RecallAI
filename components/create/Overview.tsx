@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation';
 
 type Props = {
   data: DeckResponse;
-  setData: React.Dispatch<React.SetStateAction<DeckResponse | null>>;
+  setData: React.Dispatch<React.SetStateAction<DeckResponse | null | string>>;
 };
 
 const Overview = ({ data, setData }: Props) => {

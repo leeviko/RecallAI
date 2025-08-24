@@ -12,7 +12,7 @@ type Props = {
   answer: string;
   choices?: string[];
 
-  setData: React.Dispatch<React.SetStateAction<DeckResponse | null>>;
+  setData: React.Dispatch<React.SetStateAction<DeckResponse | null | string>>;
 };
 
 const CardItem = ({
@@ -36,8 +36,8 @@ const CardItem = ({
       choices,
     };
 
-    setData((prevData: DeckResponse | null) => {
-      if (!prevData) return null;
+    setData((prevData: DeckResponse | null | string) => {
+      if (!prevData || typeof prevData === 'string') return null;
 
       const updatedData: DeckResponse = {
         ...prevData,

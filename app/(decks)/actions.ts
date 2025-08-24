@@ -32,23 +32,36 @@ export async function generateDeck(
 
   const output = response.output_text;
 
-  const validatedOutput = deckResponseSchema.safeParse(JSON.parse(output));
+  try {
+    const validatedOutput = deckResponseSchema.safeParse(JSON.parse(output));
 
-  if (!validatedOutput.success) {
-    console.error('Invalid output:', validatedOutput.error);
-    console.log(output);
+    if (!validatedOutput.success) {
+      return {
+        ok: false,
+        msg: 'Failed to generate valid cards',
+        status: 500,
+      };
+    }
+
+    return {
+      ok: true,
+      data: validatedOutput.data,
+    };
+  } catch (err) {
+    if (typeof output === 'string') {
+      return {
+        ok: false,
+        msg: output,
+        status: 400,
+      };
+    }
+
     return {
       ok: false,
-      msg: 'Failed to generate valid flashcards',
+      msg: 'Failed to generate valid cards',
       status: 500,
     };
   }
-
-  console.log(validatedOutput.data);
-  return {
-    ok: true,
-    data: validatedOutput.data,
-  };
 }
 
 /**

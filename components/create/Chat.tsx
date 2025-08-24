@@ -7,8 +7,8 @@ import { toast } from 'sonner';
 import { DeckResponse } from '@/lib/schemas/flashcards';
 
 type Props = {
-  data: DeckResponse | null;
-  setData: (data: DeckResponse) => void;
+  data: DeckResponse | null | string;
+  setData: (data: DeckResponse | string) => void;
   setGenerated: (generated: boolean) => void;
 };
 
@@ -24,13 +24,19 @@ const Chat = ({ data, setData, setGenerated }: Props) => {
     setLoading(true);
     const response = await generateDeck(prompt);
     setLoading(false);
+
     if (response.ok && response.data) {
       toast.success('Flashcards generated successfully!');
       setData(response.data);
+      setPrompt('');
       setGenerated(true);
     } else if (!response.ok) {
-      toast.error(response.msg);
-      console.error(response.msg);
+      if (response.status === 400) {
+        setPrompt('');
+        setData(response.msg);
+      } else {
+        setData('Failed to generate valid cards!');
+      }
     }
   };
 

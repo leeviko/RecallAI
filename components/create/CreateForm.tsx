@@ -3,8 +3,8 @@ import Chat from './Chat';
 import { DeckResponse } from '@/lib/schemas/flashcards';
 
 type Props = {
-  data: DeckResponse | null;
-  setData: (data: DeckResponse) => void;
+  data: DeckResponse | null | string;
+  setData: (data: DeckResponse | string) => void;
   setGenerated: (generated: boolean) => void;
 };
 
@@ -16,6 +16,11 @@ const CreateForm = ({ data, setData, setGenerated }: Props) => {
         <p className={styles.subtitle}>
           Use the power of AI to create personalized flashcards effortlessly.
         </p>
+        {typeof data === 'string' && (
+          <div className={styles.aiResponse}>
+            <p>{data}</p>
+          </div>
+        )}
         <Chat data={data} setData={setData} setGenerated={setGenerated} />
         <div className={styles.footer}>
           <h3>Help</h3>

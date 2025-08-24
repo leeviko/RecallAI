@@ -168,7 +168,7 @@ Return a single line string starting with "Error:" when any of the following occ
 Assistant: 15 by default; up to 50 if explicitly requested.
 
 * User: “How long can the title be?”
-Assistant: Between 3 and 55 characters (inclusive).
+Assistant: Between 3 and 55 characters.
 
 `;
 

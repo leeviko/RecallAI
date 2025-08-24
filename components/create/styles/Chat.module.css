@@ -41,11 +41,12 @@
   border-top: none;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
-  background-color: var(--black-dark-2-050);
+  background-color: var(--black-dark-2-025);
   display: flex;
   align-items: center;
   justify-content: right;
 }
+
 .preview .sendContainer {
   border: 2px solid var(--teal-light-010);
   border-top: none;
@@ -65,6 +66,7 @@
 
 .sendContainer button {
   transition: background-color 0.1s ease;
+  border-radius: 5px;
   padding: 0.25rem 0.5rem;
   font-family: var(--geist-sans);
   display: flex;
@@ -75,7 +77,7 @@
 }
 
 .sendContainer:not(.loading) button:hover {
-  background-color: var(--black-dark-2-100);
+  background-color: var(--black-dark-2-025);
 }
 
 .preview .sendContainer button:hover {

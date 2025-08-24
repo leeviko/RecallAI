@@ -7,14 +7,22 @@ import { toast } from 'sonner';
 import { DeckResponse } from '@/lib/schemas/flashcards';
 
 type Props = {
-  data: DeckResponse | null | string;
-  setData: (data: DeckResponse | string) => void;
+  response: DeckResponse | null | string;
+  setResponse: (data: DeckResponse | string) => void;
   setGenerated: (generated: boolean) => void;
+
+  setLoading: (loading: boolean) => void;
+  loading: boolean;
 };
 
-const Chat = ({ data, setData, setGenerated }: Props) => {
+const Chat = ({
+  response,
+  setResponse,
+  setGenerated,
+  setLoading,
+  loading,
+}: Props) => {
   const [prompt, setPrompt] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -22,20 +30,20 @@ const Chat = ({ data, setData, setGenerated }: Props) => {
     }
 
     setLoading(true);
-    const response = await generateDeck(prompt);
+    const res = await generateDeck(prompt);
     setLoading(false);
 
-    if (response.ok && response.data) {
+    if (res.ok && res.data) {
       toast.success('Flashcards generated successfully!');
-      setData(response.data);
+      setResponse(res.data);
       setPrompt('');
       setGenerated(true);
-    } else if (!response.ok) {
-      if (response.status === 400) {
+    } else if (!res.ok) {
+      if (res.status === 400) {
         setPrompt('');
-        setData(response.msg);
+        setResponse(res.msg);
       } else {
-        setData('Failed to generate valid cards!');
+        setResponse('Failed to generate valid cards!');
       }
     }
   };

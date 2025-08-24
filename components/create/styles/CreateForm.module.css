@@ -11,20 +11,37 @@
   margin-bottom: 2rem;
 }
 
-.aiResponse.show {
+.aiResponse.show,
+.aiResponse.loading {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  opacity: 1;
+}
+
+.aiResponse:not(.show):not(.loading) {
+  opacity: 0;
+  height: 0;
+}
+
+.aiResponse.show {
+  min-width: 80%;
+}
+
+.aiResponse.loading {
+  min-width: 50%;
+  opacity: 0.7;
 }
 
 .aiResponse {
+  min-width: 50%;
   width: min-content;
-  min-width: 75%;
   background: var(--black-dark-2-025);
   border-radius: 5px;
   padding-left: 1rem;
   padding-right: 1rem;
   margin: 1rem 0;
-  transition: padding 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: padding 0.2s ease-in-out, opacity 0.2s ease-in-out,
+    min-width 0.2s ease-in-out;
 }
 
 .aiLabel {
@@ -40,16 +57,16 @@
   color: var(--teal-light-080);
 }
 
-.footer {
-  position: absolute;
+.help {
   margin-top: 1.25rem;
 }
 
-.footer p {
-  font-size: 0.85rem;
-  margin: 0.5rem 0;
+.helpContent {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.25rem 0;
 }
 
-.footer strong {
-  color: var(--teal-light-080);
+.help p {
+  font-size: 0.85rem;
 }

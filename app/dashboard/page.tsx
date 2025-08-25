@@ -4,6 +4,7 @@ import Button from '@/components/buttons/Button';
 import DeckCard from '@/components/decks/DeckCard';
 import { apiFetch } from '@/lib/api-client';
 import { DeckWithCards } from '@/lib/schemas/flashcards';
+import Image from 'next/image';
 
 const Page = async () => {
   const result = await apiFetch<DeckWithCards[]>('/api/decks');
@@ -20,8 +21,9 @@ const Page = async () => {
           <p>View and manage your decks</p>
         </div>
         <div>
-          <Button color="accent-dark" variant="fill" size="sm" href="/create">
-            Create new deck
+          <Button color="blue" variant="fill" size="sm" href="/create">
+            <Image src="/icons/add.svg" alt="Add Icon" width={20} height={20} />
+            <span>Create new deck</span>
           </Button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 'use client';
-import { signOut } from '@/lib/auth-client';
+import { authClient, signOut } from '@/lib/auth-client';
 import styles from './styles/UserMenu.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -39,12 +39,12 @@ const UserMenu = ({ hidden, setMenuHidden }: Props) => {
     >
       <div className={styles.menu}>
         <div className={styles.section}>
-          <Link href="/dashboard" onClick={handleClick}>
+          {/* <Link href="/dashboard" onClick={handleClick}>
             Dashboard
           </Link>
           <Link href="/generate" onClick={handleClick}>
             Generate decks
-          </Link>
+          </Link> */}
           <Link href="/settings" onClick={handleClick}>
             Settings
           </Link>

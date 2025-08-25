@@ -17,14 +17,16 @@ const Avatar = () => {
 
   return (
     <div ref={menuRef} className={styles.container}>
-      <Image
-        className={styles.avatar}
-        src="/icons/account.svg"
-        alt="User Avatar"
-        width={24}
-        height={24}
-        onClick={handleAvatarClick}
-      />
+      <button className={styles.avatarBtn}>
+        <Image
+          className={styles.avatar}
+          src="/icons/account.svg"
+          alt="User Avatar"
+          width={24}
+          height={24}
+          onClick={handleAvatarClick}
+        />
+      </button>
       <UserMenu hidden={menuHidden} setMenuHidden={setMenuHidden} />
     </div>
   );

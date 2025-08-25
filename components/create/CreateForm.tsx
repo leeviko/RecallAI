@@ -2,6 +2,8 @@ import styles from './styles/CreateForm.module.css';
 import Chat from './Chat';
 import { DeckResponse } from '@/lib/schemas/flashcards';
 import LoaderInline from '../loader/LoaderInline';
+import Link from 'next/link';
+import Image from 'next/image';
 
 type Props = {
   response: DeckResponse | null | string;
@@ -24,6 +26,15 @@ const CreateForm = ({
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
+        <Link href="/" className={styles.backBtn}>
+          <Image
+            src="/icons/arrow-full.svg"
+            alt="Go back"
+            width={32}
+            height={32}
+          />
+          <span>Back to Dashboard</span>
+        </Link>
         <h2>Generate study cards with AI</h2>
         <div
           className={`${styles.aiResponse} ${

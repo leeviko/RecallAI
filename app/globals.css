@@ -10,6 +10,8 @@
   --blue-3-rgb: 32, 76, 134;
   --blue-3-100: rgb(var(--blue-3-rgb));
   --blue-3-050: rgba(var(--blue-3-rgb), 0.5);
+  --blue-3-025: rgba(var(--blue-3-rgb), 0.25);
+  --blue-3-010: rgba(var(--blue-3-rgb), 0.1);
 
   --green-rgb: 52, 168, 83;
   --green-100: rgb(var(--green-rgb));
@@ -75,7 +77,7 @@
   --body-txt: var(--grey);
   --link: var(--blue);
 
-  --navbar-height: 60px;
+  --navbar-height: 55px;
 }
 
 * {

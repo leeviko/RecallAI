@@ -1,11 +1,15 @@
 .card {
-  background: var(--black-dark-2-025);
   padding: 1.5rem 2rem;
-  border-radius: 5px;
-  border: 1px solid var(--teal-light-010);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 15px;
 }
 
 .card h3 {
@@ -15,7 +19,14 @@
 }
 
 .card p {
+  white-space: nowrap;
   font-size: 2rem;
   font-weight: 600;
-  color: var(--accent);
+
+  background: linear-gradient(0deg, var(--blue-2-050), var(--blue-2-100));
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }

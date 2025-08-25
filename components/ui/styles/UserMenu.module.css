@@ -1,18 +1,17 @@
 .container {
   position: absolute;
-  top: var(--navbar-height);
-  right: 4px;
+  top: calc(var(--navbar-height) - 0.5rem);
+  right: 10px;
   border-radius: 5px;
-  border: 2px solid var(--black-dark-3-080);
-  transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
-  background-color: #0e0e0e;
-  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
-  min-width: 175px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background-color: rgb(16, 16, 16);
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+  min-width: 150px;
+  z-index: 1;
 }
 
 .container.hidden {
   opacity: 0;
-  transform: translateY(-10px);
   pointer-events: none;
 }
 
@@ -28,19 +27,24 @@
 
 .menu a,
 .menu button {
+  letter-spacing: -0.03rem;
   width: 100%;
-  transition: 0.15s;
   border-radius: 5px;
-  font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin: 0.1rem 0;
   padding: 0.4rem;
   color: var(--teal-light-080);
+  outline: 2px solid transparent;
 }
 
 .menu a:hover,
 .menu button:hover {
-  background-color: var(--grey-2-025);
+  background-color: rgb(22, 22, 22);
+}
+
+.menu a:active,
+.menu button:active {
+  background-color: rgb(25, 25, 25);
 }
 
 .menu button {
@@ -55,5 +59,9 @@
   padding: 0.15rem 0;
   display: flex;
   flex-direction: column;
-  border-top: 2px solid var(--black-dark-3-100);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section:first-child {
+  border-top: none;
 }

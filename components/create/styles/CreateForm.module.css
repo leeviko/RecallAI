@@ -10,6 +10,30 @@
   padding: 3rem;
 }
 
+.backBtn {
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+  transition: opacity 0.2s ease;
+}
+
+.backBtn img {
+  transform: rotate(180deg);
+  transition: margin-left 0.2s cubic-bezier(0.2, 0.9, 0.2, 1);
+  margin-left: 0;
+}
+
+.backBtn:hover {
+  opacity: 1;
+}
+
+.backBtn:hover img {
+  transform: rotate(180deg);
+  margin-left: -3px;
+}
+
 .container h2 {
   color: var(--teal-light-080);
   font-weight: 700;

@@ -1,6 +1,6 @@
 .card {
-  background-color: var(--black-dark-2-025);
-  border: 1px solid var(--teal-light-010);
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 5px;
   padding: 1rem;
   display: flex;
@@ -8,8 +8,7 @@
 }
 
 .numOfCards {
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  margin: 0.5rem 0;
   font-size: 0.9rem;
 }
 
@@ -17,16 +16,50 @@
   margin-top: auto;
 }
 
-.dates {
-  display: flex;
-  justify-content: space-between;
+.lastStudied {
+  white-space: nowrap;
   font-size: 0.8rem;
   margin-top: 0.5rem;
   color: rgba(255, 255, 255, 0.5);
 }
 
 .actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr; */
+  margin-top: 1rem;
   gap: 0.5rem;
+}
+
+.actions a {
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.15s ease;
+}
+
+.actions .editBtn {
+  padding: 0.5rem 1rem;
+  background-color: var(--black-dark-2-050);
+}
+
+.actions .studyBtn {
+  background: var(--blue-2-050);
+  gap: 0.5rem;
+}
+
+.actions .studyBtn:hover {
+  background: var(--blue-2-100);
+}
+
+.actions .editBtn:hover {
+  background: var(--black-dark-2-100);
 }

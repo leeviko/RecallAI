@@ -17,6 +17,7 @@
   --green-100: rgb(var(--green-rgb));
   --green-050: rgba(var(--green-rgb), 0.5);
   --green-025: rgba(var(--green-rgb), 0.25);
+  --green-005: rgba(var(--green-rgb), 0.05);
 
   --red-rgb: 168, 52, 52;
   --red-100: rgb(var(--red-rgb));

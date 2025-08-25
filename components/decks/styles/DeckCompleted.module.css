@@ -1,0 +1,109 @@
+.container {
+  margin-top: 2rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.trophy {
+  background-color: var(--green-005);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header h2 {
+  margin: 0.25rem 0;
+}
+
+.header p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+}
+
+.successImgContainer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.successImg {
+  opacity: 0;
+  transform: translateY(15px) scale(1) rotate(-3deg);
+  transition: opacity 420ms ease-in-out,
+    transform 640ms cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.successImg.show {
+  opacity: 0.8;
+  transform: translateY(0) scale(1) rotate(0);
+}
+
+.progressTextContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+}
+
+.stats {
+  display: flex;
+}
+
+.stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.stat p {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.stat span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+}
+
+.message {
+  background-color: var(--black-dark-2-050);
+  border-radius: 5px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem 1rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.footer h3 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer ul {
+  margin-top: 0.25rem;
+  margin-left: 1rem;
+  padding: 0;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+}

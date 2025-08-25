@@ -3,11 +3,14 @@
   border-radius: 5px;
   background-color: var(--black-dark-2-025);
   height: 0.5rem;
+  overflow: hidden;
 }
 
 .progressFill {
   border-radius: 5px;
   background-color: var(--accent);
   height: 100%;
-  transition: width 0.2s ease-in-out;
+
+  transition: width 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: width;
 }

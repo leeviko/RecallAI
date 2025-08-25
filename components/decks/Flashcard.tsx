@@ -13,7 +13,7 @@ const Flashcard = ({ card }: Props) => {
     <div className={styles.flashcard}>
       {card.type === 'QA' && <QACard card={card} />}
       {card.type === 'MULTICHOICE' && <MultichoiceCard card={card} />}
-      {/* {card.type === 'TRUEFALSE' && <TrueFalseCard card={card} />} */}
+      {card.type === 'TRUEFALSE' && <TrueFalseCard card={card} />}
     </div>
   );
 };

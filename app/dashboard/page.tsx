@@ -7,6 +7,7 @@ import { getUserDecksDb } from '@/lib/db/decks';
 import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
+import { getTotalStudyTime } from '@/lib/db/studySessions';
 
 const Page = async () => {
   const session = await auth.api.getSession({
@@ -22,6 +23,8 @@ const Page = async () => {
   if (!result.ok) {
     return <div>No decks found</div>;
   }
+
+  const studyTime = await getTotalStudyTime(session.user.id);
 
   return (
     <div className={styles.page}>
@@ -48,11 +51,7 @@ const Page = async () => {
           value={result.data.reduce((acc, deck) => acc + deck.cards.length, 0)}
           icon="/icons/book.svg"
         />
-        <StatCard
-          title="Study Time"
-          value={'21h 34mins'}
-          icon="/icons/book.svg"
-        />
+        <StatCard title="Study Time" value={studyTime} icon="/icons/book.svg" />
         <StatCard
           title="Last studied"
           value={'Jan 20 2025'}

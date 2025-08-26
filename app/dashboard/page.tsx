@@ -2,15 +2,22 @@ import StatCard from '@/components/ui/StatCard';
 import styles from './Dashboard.module.css';
 import Button from '@/components/buttons/Button';
 import DeckCard from '@/components/decks/DeckCard';
-import { apiFetch } from '@/lib/api-client';
-import {
-  DeckWithCards,
-  DeckWithCardsAndMetrics,
-} from '@/lib/schemas/flashcards';
 import Image from 'next/image';
+import { getUserDecksDb } from '@/lib/db/decks';
+import { auth } from '@/lib/auth';
+import { redirect } from 'next/navigation';
+import { headers } from 'next/headers';
 
 const Page = async () => {
-  const result = await apiFetch<DeckWithCardsAndMetrics[]>('/api/decks');
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect('/login');
+  }
+
+  const result = await getUserDecksDb(session.user.id);
 
   if (!result.ok) {
     return <div>No decks found</div>;

@@ -1,11 +1,9 @@
 import Deck from '@/components/decks/Deck';
 import styles from '@/components/decks/styles/DeckPage.module.css';
-import { DeckWithCards } from '@/lib/schemas/flashcards';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { apiFetch } from '@/lib/api-client';
-import { updateDeck } from '../../actions';
+import { notFound, redirect } from 'next/navigation';
+import { getDeckDb, updateDeckDb } from '@/lib/db/decks';
 
 type Props = {
   params: Promise<{
@@ -23,24 +21,24 @@ const page = async ({ params }: Props) => {
     redirect('/login');
   }
 
-  const res = await apiFetch<DeckWithCards>(`/api/decks/${deckId}`);
+  const response = await getDeckDb(session.user.id, deckId);
 
-  if (!res.ok) {
-    return (
-      <div className={styles.page}>
-        <div className={styles.container}>
-          <p>Error loading deck: {res.msg}</p>
-        </div>
-      </div>
-    );
+  if (!response.ok) {
+    if (response.status === 404) {
+      return notFound();
+    }
+
+    return <div>Error loading deck</div>;
   }
 
-  await updateDeck(deckId, { lastVisited: new Date() });
+  updateDeckDb(session.user.id, deckId, { lastVisited: new Date() }).catch(
+    console.error
+  );
 
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        <Deck deck={res.data} />
+        <Deck deck={response.data} />
       </div>
     </div>
   );

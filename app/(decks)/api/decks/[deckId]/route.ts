@@ -1,8 +1,6 @@
 import { auth } from '@/lib/auth';
-import prisma from '@/lib/prisma';
-import { DeckWithCards, flashCardWithIdSchema } from '@/lib/schemas/flashcards';
+import { getDeckDb } from '@/lib/db/decks';
 import { NextRequest, NextResponse } from 'next/server';
-import z from 'zod';
 
 export async function GET(
   req: NextRequest,
@@ -22,33 +20,11 @@ export async function GET(
     return NextResponse.json({ msg: 'Deck ID is required' }, { status: 400 });
   }
 
-  try {
-    const result: DeckWithCards | null = await prisma.deck.findUnique({
-      where: {
-        id: deckId,
-      },
-      include: {
-        cards: {
-          omit: {
-            userId: true,
-            deckId: true,
-            createdAt: true,
-            updatedAt: true,
-          },
-        },
-      },
-      omit: {
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
+  const deck = await getDeckDb(session.user.id, deckId);
 
-    if (!result || result.userId !== session.user.id) {
-      return NextResponse.json({ msg: 'Deck not found' }, { status: 404 });
-    }
-
-    return NextResponse.json(result);
-  } catch (err) {
-    return NextResponse.json({ msg: 'Internal Server Error' }, { status: 500 });
+  if (!deck.ok) {
+    return NextResponse.json({ msg: deck.msg }, { status: deck.status });
   }
+
+  return NextResponse.json(deck.data);
 }

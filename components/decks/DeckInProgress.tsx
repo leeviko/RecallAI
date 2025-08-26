@@ -8,10 +8,10 @@ import { useState } from 'react';
 
 type Props = {
   cards: CardWithId[];
-  setCompleted: (completed: boolean) => void;
+  handleComplete: () => Promise<void>;
 };
 
-const DeckInProgress = ({ cards, setCompleted }: Props) => {
+const DeckInProgress = ({ cards, handleComplete }: Props) => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const totalCards = cards.length;
   const percentage = ((currentCardIndex + 1) / totalCards) * 100;
@@ -22,11 +22,11 @@ const DeckInProgress = ({ cards, setCompleted }: Props) => {
     }
   };
 
-  const handleNextClick = () => {
+  const handleNextClick = async () => {
     if (currentCardIndex < totalCards - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
     } else {
-      setCompleted(true);
+      await handleComplete();
     }
   };
 

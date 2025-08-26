@@ -7,13 +7,12 @@ import {
   CardWithId,
   DeckResponse,
   deckResponseSchema,
-  flashCardWithIdSchema,
   GeneratedDeckWithCards,
 } from '@/lib/schemas/flashcards';
 import prisma from '@/lib/prisma';
-import { Deck, FlashcardType } from '@prisma/client';
+import { FlashcardType } from '@prisma/client';
 import { APIResponse } from '@/lib/api-client';
-import z from 'zod';
+import { updateDeckDb } from '@/lib/db/decks';
 
 /**
  * Generate a new deck of flashcards using OpenAI.
@@ -137,87 +136,38 @@ export async function updateDeck(deckId: string, updates: UpdateDeckParams) {
 
   const userId = session.user.id;
 
-  // UPDATES
+  const result = await updateDeckDb(userId, deckId, updates);
 
-  // lastVisited
-  if (updates.lastVisited) {
-    try {
-      const deck = await prisma.deck.findUnique({
-        where: {
-          id: deckId,
-          userId,
-        },
-      });
+  return result;
+}
 
-      if (!deck) {
-        return { ok: false, msg: 'Deck not found', status: 404 };
-      }
+/**
+ * Save a deck study session.
+ * @param deckId The ID of the deck.
+ * @param totalTime The total time (ms) spent studying.
+ */
+export async function saveStudySession(deckId: string, totalTime: number) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-      await prisma.deckMetrics.upsert({
-        where: {
-          deckId_userId: {
-            userId,
-            deckId,
-          },
-        },
-        create: {
-          userId,
-          deckId,
-        },
-        update: {
-          lastVisited: new Date(),
-        },
-      });
-    } catch (err) {
-      return {
-        ok: false,
-        msg: 'Failed to update deck visit date',
-        status: 500,
-      };
-    }
+  if (!session) {
+    return { ok: false, msg: 'Unauthorized', status: 401 };
   }
 
-  // Name and cards
-  if (!updates.name && !updates.cards) {
-    return { ok: false, msg: 'Nothing to update', status: 400 };
-  }
+  const userId = session.user.id;
 
   try {
-    await prisma.$transaction(async (ctx) => {
-      if (updates.name) {
-        await ctx.deck.update({
-          where: { id: deckId, userId },
-          data: { name: updates.name },
-        });
-      }
-
-      if (updates.cards) {
-        const validatedCards = z
-          .array(flashCardWithIdSchema)
-          .safeParse(updates.cards);
-
-        if (!validatedCards.success) {
-          throw new Error('Invalid card data');
-        }
-
-        const cardUpdates = validatedCards.data.map((card: CardWithId) =>
-          ctx.flashcard.update({
-            where: { id: card.id, userId },
-            data: {
-              type: card.type,
-              question: card.question,
-              answer: card.answer,
-              choices: card.choices,
-            },
-          })
-        );
-
-        await Promise.all(cardUpdates);
-      }
+    await prisma.studySession.create({
+      data: {
+        userId,
+        deckId,
+        totalTime,
+      },
     });
 
-    return { ok: true, msg: 'Deck updated successfully' };
+    return { ok: true, msg: 'Study session saved' };
   } catch (err) {
-    return { ok: false, msg: 'Failed to update deck', status: 500 };
+    return { ok: false, msg: 'Failed to save study session', status: 500 };
   }
 }

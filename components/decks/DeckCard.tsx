@@ -6,12 +6,11 @@ import { prettyDate } from '@/lib/utils';
 type Props = {
   id: string;
   name: string;
-  createdAt: string;
   numOfCards: number;
   lastVisited: Date | string;
 };
 
-const DeckCard = ({ id, name, createdAt, numOfCards, lastVisited }: Props) => {
+const DeckCard = ({ id, name, numOfCards, lastVisited }: Props) => {
   const lastVisitedDate = new Date(lastVisited);
   const isValidDate = !isNaN(lastVisitedDate.getTime());
 

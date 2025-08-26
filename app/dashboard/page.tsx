@@ -7,7 +7,7 @@ import { getUserDecksDb } from '@/lib/db/decks';
 import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
-import { getTotalStudyTime } from '@/lib/db/studySessions';
+import { getTotalStudyTime, getLastStudied } from '@/lib/db/studySessions';
 
 const Page = async () => {
   const session = await auth.api.getSession({
@@ -18,13 +18,16 @@ const Page = async () => {
     redirect('/login');
   }
 
-  const result = await getUserDecksDb(session.user.id);
+  const [result, studyTime, lastStudied] = await Promise.all([
+    getUserDecksDb(session.user.id),
+    getTotalStudyTime(session.user.id),
+    getLastStudied(session.user.id),
+  ]);
 
+  // TODO
   if (!result.ok) {
     return <div>No decks found</div>;
   }
-
-  const studyTime = await getTotalStudyTime(session.user.id);
 
   return (
     <div className={styles.page}>
@@ -54,7 +57,7 @@ const Page = async () => {
         <StatCard title="Study Time" value={studyTime} icon="/icons/book.svg" />
         <StatCard
           title="Last studied"
-          value={'Jan 20 2025'}
+          value={lastStudied}
           icon="/icons/book.svg"
         />
       </div>
@@ -68,7 +71,6 @@ const Page = async () => {
               id={deck.id}
               numOfCards={deck.cards.length}
               lastVisited={deck.lastVisited || 'Never'}
-              createdAt="Jan 20"
             />
           ))}
         </div>

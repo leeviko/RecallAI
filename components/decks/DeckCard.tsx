@@ -1,17 +1,20 @@
 import Image from 'next/image';
-import Button from '../buttons/Button';
-import Tag from '../ui/Tag';
 import styles from './styles/DeckCard.module.css';
 import Link from 'next/link';
+import { prettyDate } from '@/lib/utils';
 
 type Props = {
   id: string;
   name: string;
   createdAt: string;
   numOfCards: number;
+  lastVisited: Date | string;
 };
 
-const DeckCard = ({ id, name, createdAt, numOfCards }: Props) => {
+const DeckCard = ({ id, name, createdAt, numOfCards, lastVisited }: Props) => {
+  const lastVisitedDate = new Date(lastVisited);
+  const isValidDate = !isNaN(lastVisitedDate.getTime());
+
   return (
     <div className={styles.card}>
       <h3 className={styles.title}>{name}</h3>
@@ -19,9 +22,10 @@ const DeckCard = ({ id, name, createdAt, numOfCards }: Props) => {
         <Tag>{numOfCards} Cards</Tag>
       </p> */}
       <div className={styles.info}>
-        {/* <span className={styles.lastStudied}>
-          Last studied <strong>Jan 20</strong>
-        </span> */}
+        <span className={styles.lastStudied}>
+          Last studied{' '}
+          <strong>{isValidDate ? prettyDate(lastVisitedDate) : 'Never'}</strong>
+        </span>
         <div className={styles.actions}>
           <Link href={`/deck/${id}`} className={styles.studyBtn}>
             <Image

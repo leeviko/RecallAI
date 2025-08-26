@@ -10,6 +10,10 @@ export type DeckWithCards = {
   cards: CardWithId[];
 };
 
+export type DeckWithCardsAndMetrics = DeckWithCards & {
+  lastVisited: Date | undefined;
+};
+
 const flashcardSchema = z.object({
   type: z.enum(FlashcardType),
   question: z.string().min(1),

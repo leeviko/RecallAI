@@ -2,16 +2,19 @@ import Image from 'next/image';
 import styles from './styles/DeckCompleted.module.css';
 import ProgressBar from '../ui/ProgressBar';
 import Button from '../buttons/Button';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { formatDuration } from '@/lib/utils';
 
 type Props = {
   deckName: string;
   totalCards: number;
+  startTime: number;
 };
 
-const DeckCompleted = ({ deckName, totalCards }: Props) => {
+const DeckCompleted = ({ deckName, totalCards, startTime }: Props) => {
   const [animatedProgress, setAnimatedProgress] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const endTime = useRef(Date.now());
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 80);
@@ -72,7 +75,7 @@ const DeckCompleted = ({ deckName, totalCards }: Props) => {
           <span>Total Cards</span>
         </div>
         <div className={styles.stat}>
-          <p>8 min 32 sec</p>
+          <p>{formatDuration(endTime.current - startTime)}</p>
           <span>Study Time</span>
         </div>
       </div>

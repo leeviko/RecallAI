@@ -1,7 +1,7 @@
 'use client';
 import { DeckWithCards } from '@/lib/schemas/flashcards';
 import styles from './styles/Deck.module.css';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DeckInProgress from './DeckInProgress';
 import DeckCompleted from './DeckCompleted';
 
@@ -11,6 +11,7 @@ type Props = {
 
 const Deck = ({ deck }: Props) => {
   const [completed, setCompleted] = useState(false);
+  const startTime = useRef(Date.now());
 
   return (
     <div className={styles.container}>
@@ -18,7 +19,11 @@ const Deck = ({ deck }: Props) => {
         <DeckInProgress cards={deck.cards} setCompleted={setCompleted} />
       )}
       {completed && (
-        <DeckCompleted deckName={deck.name} totalCards={deck.cards.length} />
+        <DeckCompleted
+          deckName={deck.name}
+          totalCards={deck.cards.length}
+          startTime={startTime.current}
+        />
       )}
     </div>
   );

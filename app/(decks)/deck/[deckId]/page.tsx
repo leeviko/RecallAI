@@ -5,6 +5,7 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { apiFetch } from '@/lib/api-client';
+import { updateDeck } from '../../actions';
 
 type Props = {
   params: Promise<{
@@ -25,7 +26,6 @@ const page = async ({ params }: Props) => {
   const res = await apiFetch<DeckWithCards>(`/api/decks/${deckId}`);
 
   if (!res.ok) {
-    console.log(res);
     return (
       <div className={styles.page}>
         <div className={styles.container}>
@@ -34,6 +34,8 @@ const page = async ({ params }: Props) => {
       </div>
     );
   }
+
+  await updateDeck(deckId, { lastVisited: new Date() });
 
   return (
     <div className={styles.page}>

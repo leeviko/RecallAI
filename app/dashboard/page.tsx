@@ -3,11 +3,14 @@ import styles from './Dashboard.module.css';
 import Button from '@/components/buttons/Button';
 import DeckCard from '@/components/decks/DeckCard';
 import { apiFetch } from '@/lib/api-client';
-import { DeckWithCards } from '@/lib/schemas/flashcards';
+import {
+  DeckWithCards,
+  DeckWithCardsAndMetrics,
+} from '@/lib/schemas/flashcards';
 import Image from 'next/image';
 
 const Page = async () => {
-  const result = await apiFetch<DeckWithCards[]>('/api/decks');
+  const result = await apiFetch<DeckWithCardsAndMetrics[]>('/api/decks');
 
   if (!result.ok) {
     return <div>No decks found</div>;
@@ -58,6 +61,7 @@ const Page = async () => {
               name={deck.name}
               id={deck.id}
               numOfCards={deck.cards.length}
+              lastVisited={deck.lastVisited || 'Never'}
               createdAt="Jan 20"
             />
           ))}

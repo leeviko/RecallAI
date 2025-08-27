@@ -1,7 +1,9 @@
+'use client';
 import Image from 'next/image';
 import styles from './styles/DeckCard.module.css';
 import Link from 'next/link';
 import { prettyDate } from '@/lib/utils';
+import Dropdown from '../ui/Dropdown';
 
 type Props = {
   id: string;
@@ -16,7 +18,19 @@ const DeckCard = ({ id, name, numOfCards, lastVisited }: Props) => {
 
   return (
     <div className={styles.card}>
-      <h3 className={styles.title}>{name}</h3>
+      <div className={styles.header}>
+        <h3 className={styles.title}>{name}</h3>
+        <div className={styles.dropdown}>
+          <Dropdown
+            btnIconUrl="/icons/more.svg"
+            items={[
+              { label: 'Edit', link: `/deck/${id}/edit` },
+              { label: 'Delete', onClick: () => console.log('Delete deck') },
+            ]}
+            right="0"
+          />
+        </div>
+      </div>
       {/* <p className={styles.numOfCards}>
         <Tag>{numOfCards} Cards</Tag>
       </p> */}
@@ -34,9 +48,6 @@ const DeckCard = ({ id, name, numOfCards, lastVisited }: Props) => {
               height={16}
             />
             <span>Study</span>
-          </Link>
-          <Link href={`/deck/${id}/edit`} className={styles.editBtn}>
-            <Image src="/icons/edit.svg" alt="Edit" width={16} height={16} />
           </Link>
         </div>
       </div>

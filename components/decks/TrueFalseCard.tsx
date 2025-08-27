@@ -7,10 +7,9 @@ type Props = {
 };
 
 const TrueFalseCard = ({ card }: Props) => {
-  const [selected, setSelected] = useState<boolean | null>(null);
-  const correctAnswer = Boolean(card.answer);
+  const [selected, setSelected] = useState<'True' | 'False' | null>(null);
 
-  const handleClick = (selectedAnswer: boolean) => {
+  const handleClick = (selectedAnswer: 'True' | 'False') => {
     if (selected !== null) return;
     setSelected(selectedAnswer);
   };
@@ -22,23 +21,23 @@ const TrueFalseCard = ({ card }: Props) => {
         <div className={styles.choicesContainer}>
           <p className={styles.prompt}>
             {selected === null && <span>Choose an answer</span>}
-            {selected === correctAnswer && (
+            {selected === card.answer && (
               <span className={styles.correct}>Correct! Nice job.</span>
             )}
-            {selected !== null && selected !== correctAnswer && (
+            {selected !== null && selected !== card.answer && (
               <span className={styles.incorrect}>Wrong! Maybe next time.</span>
             )}
           </p>
           <div className={styles.choices}>
             <button
               className={`${styles.choice} ${
-                selected === true
-                  ? correctAnswer === true
+                selected === 'True'
+                  ? card.answer === 'True'
                     ? styles.correct
                     : styles.incorrect
                   : ''
               }`}
-              onClick={() => handleClick(true)}
+              onClick={() => handleClick('True')}
               disabled={selected !== null}
             >
               <span>1</span>
@@ -46,13 +45,13 @@ const TrueFalseCard = ({ card }: Props) => {
             </button>
             <button
               className={`${styles.choice} ${
-                selected === false
-                  ? correctAnswer === false
+                selected === 'False'
+                  ? card.answer === 'False'
                     ? styles.correct
                     : styles.incorrect
                   : ''
               }`}
-              onClick={() => handleClick(false)}
+              onClick={() => handleClick('False')}
               disabled={selected !== null}
             >
               <span>2</span>

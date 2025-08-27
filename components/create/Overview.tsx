@@ -14,9 +14,10 @@ type Props = {
   setResponse: React.Dispatch<
     React.SetStateAction<DeckResponse | null | string>
   >;
+  setGenerated: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Overview = ({ response, setResponse }: Props) => {
+const Overview = ({ response, setResponse, setGenerated }: Props) => {
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
     setLoading(true);
@@ -31,9 +32,23 @@ const Overview = ({ response, setResponse }: Props) => {
     }
   };
 
+  const handleBack = () => {
+    setResponse(null);
+    setGenerated(false);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+        <button onClick={handleBack} className={styles.backBtn}>
+          <Image
+            src="/icons/arrow-full.svg"
+            alt="Go back"
+            width={32}
+            height={32}
+          />
+          <span>Back to Generate</span>
+        </button>
         <div className={styles.titleContainer}>
           <h2>{response.title}</h2>
           <Button size="sm" onClick={handleSubmit} disabled={loading}>

@@ -22,7 +22,11 @@ const Page = () => {
         />
       )}
       {generated && typeof response !== 'string' && response !== null && (
-        <Overview response={response} setResponse={setResponse} />
+        <Overview
+          response={response}
+          setResponse={setResponse}
+          setGenerated={setGenerated}
+        />
       )}
     </div>
   );

@@ -12,9 +12,7 @@ type Props = {
   answer: string;
   choices?: string[];
 
-  setResponse: React.Dispatch<
-    React.SetStateAction<DeckResponse | null | string>
-  >;
+  setDeck: React.Dispatch<React.SetStateAction<DeckResponse | null | string>>;
 };
 
 const CardItem = ({
@@ -23,11 +21,11 @@ const CardItem = ({
   type,
   answer,
   choices,
-  setResponse,
+  setDeck,
 }: Props) => {
   const [newQuestion, setNewQuestion] = useState(question);
   const [newAnswer, setNewAnswer] = useState(answer);
-  // const [newChoices, setNewChoices] = useState(choices)
+  const [newChoices, setNewChoices] = useState(choices);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleUpdate = () => {
@@ -35,10 +33,17 @@ const CardItem = ({
       type,
       question: newQuestion,
       answer: newAnswer,
-      choices,
+      choices: newChoices,
     };
 
-    setResponse((prevData: DeckResponse | null | string) => {
+    if (
+      type === FlashcardType.MULTICHOICE &&
+      !newChoices?.includes(newAnswer)
+    ) {
+      return;
+    }
+
+    setDeck((prevData: DeckResponse | null | string) => {
       if (!prevData || typeof prevData === 'string') return null;
 
       const updatedData: DeckResponse = {
@@ -54,7 +59,7 @@ const CardItem = ({
   };
 
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles[type]}`}>
       <div className={styles.header}>
         <span className={styles.number}>{number}</span>
         <h3 className={styles.title}>{question}</h3>
@@ -87,6 +92,91 @@ const CardItem = ({
             onChange={(e) => setNewAnswer(e.target.value)}
             className={styles.input}
           />
+          <div className={styles.btnContainer}>
+            <Button size="sm" onClick={handleUpdate}>
+              Save
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {type === FlashcardType.MULTICHOICE && newChoices && (
+        <div
+          className={`${styles.content} ${
+            isOpen ? styles.open : styles.closed
+          }`}
+        >
+          <label htmlFor={`question-${number}`}>Question</label>
+          <input
+            type="text"
+            id={`question-${number}`}
+            value={newQuestion}
+            onChange={(e) => setNewQuestion(e.target.value)}
+            className={styles.input}
+          />
+          <label>Choices</label>
+          <div className={styles.choicesContainer}>
+            {newChoices.map((choice, index) => (
+              <div key={index} className={styles.choice}>
+                <input
+                  type="text"
+                  value={choice}
+                  onChange={(e) => {
+                    const choices = [...newChoices];
+                    choices[index] = e.target.value;
+                    setNewChoices(choices);
+                  }}
+                  className={styles.input}
+                />
+                <input
+                  type="checkbox"
+                  checked={choice === newAnswer}
+                  onChange={() => setNewAnswer(choice)}
+                />
+              </div>
+            ))}
+          </div>
+          <div className={styles.btnContainer}>
+            <Button size="sm" onClick={handleUpdate}>
+              Save
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {type === FlashcardType.TRUEFALSE && (
+        <div
+          className={`${styles.content} ${
+            isOpen ? styles.open : styles.closed
+          }`}
+        >
+          <label htmlFor={`question-${number}`}>Question</label>
+          <input
+            type="text"
+            id={`question-${number}`}
+            value={newQuestion}
+            onChange={(e) => setNewQuestion(e.target.value)}
+            className={styles.input}
+          />
+          <label>Choices</label>
+          <div className={styles.choicesContainer}>
+            <div className={styles.choice}>
+              <p className={styles.input}>True</p>
+              <input
+                type="checkbox"
+                checked={newAnswer === 'True'}
+                onChange={() => setNewAnswer('True')}
+              />
+            </div>
+            <div className={styles.choice}>
+              <p className={styles.input}>False</p>
+              <input
+                type="checkbox"
+                checked={newAnswer === 'False'}
+                onChange={() => setNewAnswer('False')}
+              />
+            </div>
+          </div>
           <div className={styles.btnContainer}>
             <Button size="sm" onClick={handleUpdate}>
               Save

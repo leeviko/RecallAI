@@ -48,12 +48,7 @@ const Overview = ({ response, setResponse }: Props) => {
       </div>
       <div className={styles.list}>
         {response.cards.map((card, i) => (
-          <CardItem
-            key={i}
-            {...card}
-            number={i + 1}
-            setResponse={setResponse}
-          />
+          <CardItem key={i} {...card} number={i + 1} setDeck={setResponse} />
         ))}
       </div>
     </div>

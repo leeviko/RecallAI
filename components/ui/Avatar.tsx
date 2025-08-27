@@ -1,34 +1,35 @@
 'use client';
-import { useRef, useState } from 'react';
-import styles from './styles/Avatar.module.css';
-import UserMenu from '@/components/ui/UserMenu';
-import useClickOutside from '@/hooks/useClickOutside';
-import Image from 'next/image';
+import { signOut } from '@/lib/auth-client';
+import Dropdown from './Dropdown';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const Avatar = () => {
-  const [menuHidden, setMenuHidden] = useState(true);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
-  useClickOutside(menuRef, () => setMenuHidden(true));
-
-  const handleAvatarClick = () => {
-    setMenuHidden(!menuHidden);
+  const handleLogout = async () => {
+    await signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          toast.success('Logged out successfully');
+          router.push('/login');
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message || 'An error occurred');
+        },
+      },
+    });
   };
 
   return (
-    <div ref={menuRef} className={styles.container}>
-      <button className={styles.avatarBtn}>
-        <Image
-          className={styles.avatar}
-          src="/icons/account.svg"
-          alt="User Avatar"
-          width={24}
-          height={24}
-          onClick={handleAvatarClick}
-        />
-      </button>
-      <UserMenu hidden={menuHidden} setMenuHidden={setMenuHidden} />
-    </div>
+    <Dropdown
+      btnIconUrl="/icons/account.svg"
+      items={[
+        { label: 'Settings', link: '/settings' },
+        { label: 'Logout', onClick: handleLogout },
+      ]}
+      variant="avatar"
+    />
   );
 };
 

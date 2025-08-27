@@ -66,20 +66,11 @@
   transition: background 0.15s ease;
 }
 
-.actions .editBtn {
-  padding: 0.5rem 1rem;
-  background-color: var(--black-dark-2-050);
-}
-
 .actions .studyBtn {
-  background: var(--blue-2-050);
+  background: var(--black-dark-2-050);
   gap: 0.5rem;
 }
 
 .actions .studyBtn:hover {
-  background: var(--blue-2-100);
-}
-
-.actions .editBtn:hover {
   background: var(--black-dark-2-100);
 }

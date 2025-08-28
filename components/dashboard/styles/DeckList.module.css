@@ -4,3 +4,28 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pagination button:disabled {
+  cursor: default;
+  opacity: 0.2;
+}
+
+.pagination .prevBtn img {
+  transform: rotate(180deg);
+}

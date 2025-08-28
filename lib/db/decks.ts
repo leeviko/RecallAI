@@ -9,6 +9,11 @@ import prisma from '../prisma';
 import z from 'zod';
 import { APIResponse } from '../api-client';
 
+export type Pagination = {
+  page: number;
+  limit: number;
+};
+
 /**
  * Get a specific deck for a user.
  * @param userId The ID of the user.
@@ -134,7 +139,8 @@ export async function getUserDeckSummaries(
  * @param userId The ID of the user.
  */
 export async function getUserDecksDb(
-  userId: string
+  userId: string,
+  pagination: Pagination
 ): Promise<APIResponse<DeckWithCardsAndMetrics[]>> {
   try {
     const result: DeckWithCards[] | null = await prisma.deck.findMany({
@@ -155,7 +161,8 @@ export async function getUserDecksDb(
         createdAt: true,
         updatedAt: true,
       },
-      take: 8,
+      take: pagination.limit,
+      skip: (pagination.page - 1) * pagination.limit,
     });
 
     if (!result) {

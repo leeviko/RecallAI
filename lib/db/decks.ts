@@ -50,6 +50,85 @@ export async function getDeckDb(
   }
 }
 
+type GetUserDeckCountsResponse = {
+  totalDecks: number;
+  totalCards: number;
+};
+
+/**
+ * Get the total count of decks and cards for a user.
+ * @param userId The ID of the user.
+ */
+export async function getUserDeckCounts(
+  userId: string
+): Promise<APIResponse<GetUserDeckCountsResponse>> {
+  try {
+    const [totalDecks, totalCards] = await prisma.$transaction([
+      prisma.deck.count({ where: { userId } }),
+      prisma.flashcard.count({ where: { userId } }),
+    ]);
+
+    return {
+      ok: true,
+      data: {
+        totalDecks,
+        totalCards,
+      },
+    };
+  } catch (err) {
+    return { ok: false, msg: 'Internal Server Error', status: 500 };
+  }
+}
+
+export type DeckSummary = {
+  id: string;
+  name: string;
+  lastVisited: Date | undefined;
+};
+
+/**
+ * Get summaries of decks for a user.
+ * @param userId The ID of the user.
+ */
+export async function getUserDeckSummaries(
+  userId: string
+): Promise<APIResponse<DeckSummary[]>> {
+  try {
+    const result = await prisma.deck.findMany({
+      where: { userId },
+      select: {
+        id: true,
+        name: true,
+      },
+      take: 8,
+    });
+
+    const metrics = await prisma.deckMetrics.findMany({
+      where: {
+        userId,
+        deckId: {
+          in: result.map((d) => d.id),
+        },
+      },
+      select: {
+        deckId: true,
+        lastVisited: true,
+      },
+    });
+
+    const metricsMap = new Map(metrics.map((m) => [m.deckId, m.lastVisited]));
+
+    const deckWithMetrics: DeckSummary[] = result.map((deck) => ({
+      ...deck,
+      lastVisited: metricsMap.get(deck.id),
+    }));
+
+    return { ok: true, data: deckWithMetrics };
+  } catch (err) {
+    return { ok: false, msg: 'Internal Server Error', status: 500 };
+  }
+}
+
 /**
  * Get all decks for a user.
  * @param userId The ID of the user.
@@ -76,6 +155,7 @@ export async function getUserDecksDb(
         createdAt: true,
         updatedAt: true,
       },
+      take: 8,
     });
 
     if (!result) {

@@ -1,27 +1,21 @@
-import { DeckResponse } from '@/lib/schemas/flashcards';
-import styles from './styles/Edit.module.css';
-import Tag from '../ui/Tag';
-import CardItem from '../decks/CardItem';
-import Button from '../buttons/Button';
-import Image from 'next/image';
+import { DeckWithoutIds } from '@/lib/schemas/flashcards';
 import { addDeck } from '@/app/(decks)/actions';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { redirect } from 'next/navigation';
+import EditDeck from '../decks/EditDeck';
 
 type Props = {
-  response: DeckResponse;
-  setResponse: React.Dispatch<
-    React.SetStateAction<DeckResponse | null | string>
-  >;
+  deck: DeckWithoutIds;
+  setDeck: React.Dispatch<React.SetStateAction<DeckWithoutIds | null | string>>;
   setGenerated: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Overview = ({ response, setResponse, setGenerated }: Props) => {
+const Overview = ({ deck, setDeck, setGenerated }: Props) => {
   const [loading, setLoading] = useState(false);
   const handleSubmit = async () => {
     setLoading(true);
-    const res = await addDeck(response);
+    const res = await addDeck(deck);
     setLoading(false);
 
     if (res.ok) {
@@ -33,40 +27,19 @@ const Overview = ({ response, setResponse, setGenerated }: Props) => {
   };
 
   const handleBack = () => {
-    setResponse(null);
+    setDeck(null);
     setGenerated(false);
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <button onClick={handleBack} className={styles.backBtn}>
-          <Image
-            src="/icons/arrow-full.svg"
-            alt="Go back"
-            width={32}
-            height={32}
-          />
-          <span>Back to Generate</span>
-        </button>
-        <div className={styles.titleContainer}>
-          <h2>{response.title}</h2>
-          <Button size="sm" onClick={handleSubmit} disabled={loading}>
-            <span>Start studying</span>
-            <Image src="/icons/arrow.svg" alt="Arrow" width={16} height={16} />
-          </Button>
-        </div>
-        <div className={styles.tagContainer}>
-          <Tag>{response.cards.length} cards</Tag>
-          <span className={styles.aiGenerated}>✨ AI Generated</span>
-        </div>
-      </div>
-      <div className={styles.list}>
-        {response.cards.map((card, i) => (
-          <CardItem key={i} {...card} number={i + 1} setDeck={setResponse} />
-        ))}
-      </div>
-    </div>
+    <EditDeck
+      isNewDeck={true}
+      deck={deck}
+      setDeck={setDeck}
+      handleBack={handleBack}
+      handleSubmit={handleSubmit}
+      loading={loading}
+    />
   );
 };
 

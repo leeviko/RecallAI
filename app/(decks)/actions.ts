@@ -5,8 +5,8 @@ import { headers } from 'next/headers';
 import { instructions, openai } from '@/lib/openai';
 import {
   CardWithId,
-  DeckResponse,
   deckResponseSchema,
+  DeckWithoutIds,
   GeneratedDeckWithCards,
 } from '@/lib/schemas/flashcards';
 import prisma from '@/lib/prisma';
@@ -21,7 +21,7 @@ import { revalidatePath } from 'next/cache';
  */
 export async function generateDeck(
   prompt: string
-): Promise<APIResponse<DeckResponse>> {
+): Promise<APIResponse<DeckWithoutIds>> {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -72,7 +72,7 @@ export async function generateDeck(
  * @param deck The deck to add.
  */
 export async function addDeck(
-  deck: DeckResponse
+  deck: DeckWithoutIds
 ): Promise<APIResponse<GeneratedDeckWithCards>> {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -82,7 +82,7 @@ export async function addDeck(
   try {
     const result = await prisma.deck.create({
       data: {
-        name: deck.title,
+        name: deck.name,
         cards: {
           create: deck.cards.map((card) => ({
             question: card.question,
@@ -115,7 +115,7 @@ export async function addDeck(
   }
 }
 
-type UpdateDeckParams = {
+export type UpdateDeckParams = {
   lastVisited?: Date;
   name?: string;
   cards?: CardWithId[];

@@ -3,7 +3,11 @@ import styles from './styles/CardItem.module.css';
 import { useState } from 'react';
 import Button from '../buttons/Button';
 import { FlashcardType } from '@prisma/client';
-import { DeckResponse, FlashcardResponse } from '@/lib/schemas/flashcards';
+import {
+  DeckWithIds,
+  DeckWithoutIds,
+  FlashcardResponse,
+} from '@/lib/schemas/flashcards';
 
 type Props = {
   number: number;
@@ -12,7 +16,9 @@ type Props = {
   answer: string;
   choices?: string[];
 
-  setDeck: React.Dispatch<React.SetStateAction<DeckResponse | null | string>>;
+  isNewDeck: boolean;
+  id?: string;
+  setDeck: React.Dispatch<React.SetStateAction<DeckWithIds | DeckWithoutIds>>;
 };
 
 const CardItem = ({
@@ -21,6 +27,8 @@ const CardItem = ({
   type,
   answer,
   choices,
+  isNewDeck,
+  id,
   setDeck,
 }: Props) => {
   const [newQuestion, setNewQuestion] = useState(question);
@@ -43,19 +51,30 @@ const CardItem = ({
       return;
     }
 
-    setDeck((prevData: DeckResponse | null | string) => {
-      if (!prevData || typeof prevData === 'string') return null;
+    setIsOpen(false);
 
-      const updatedData: DeckResponse = {
+    if (isNewDeck) {
+      setDeck((prev) => {
+        const prevData = prev as DeckWithoutIds;
+        return {
+          ...prevData,
+          cards: prevData.cards.map((card, i) =>
+            i === number - 1 ? { ...card, ...updatedCard } : card
+          ),
+        };
+      });
+      return;
+    }
+
+    setDeck((prev) => {
+      const prevData = prev as DeckWithIds;
+      return {
         ...prevData,
         cards: prevData.cards.map((card, i) =>
-          i === number - 1 ? { ...card, ...updatedCard } : card
+          card.id === id ? { ...card, ...updatedCard } : card
         ),
       };
-      return updatedData;
     });
-
-    setIsOpen(false);
   };
 
   return (

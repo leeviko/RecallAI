@@ -1,13 +1,14 @@
+'use client';
 import styles from './styles/CreateForm.module.css';
 import Chat from './Chat';
-import { DeckResponse } from '@/lib/schemas/flashcards';
+import { DeckWithoutIds } from '@/lib/schemas/flashcards';
 import LoaderInline from '../loader/LoaderInline';
 import Link from 'next/link';
 import Image from 'next/image';
 
 type Props = {
-  response: DeckResponse | null | string;
-  setResponse: (data: DeckResponse | string) => void;
+  response: DeckWithoutIds | null | string;
+  setResponse: (data: DeckWithoutIds | null | string) => void;
   setGenerated: (generated: boolean) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
@@ -20,8 +21,8 @@ const CreateForm = ({
   loading,
   setLoading,
 }: Props) => {
-  const isResponseString = typeof response === 'string';
-  const isErrorResponse = isResponseString && response.startsWith('Error');
+  const isStringResponse = typeof response === 'string';
+  const isErrorResponse = isStringResponse && response.startsWith('Error');
 
   return (
     <div className={styles.container}>
@@ -39,13 +40,13 @@ const CreateForm = ({
         <div
           className={`${styles.aiResponse} ${
             isErrorResponse ? styles.error : ''
-          } ${isResponseString ? styles.show : ''} ${
+          } ${isStringResponse ? styles.show : ''} ${
             loading ? styles.loading : ''
           }`}
         >
           <div className={styles.aiLabel}>🤖 AI Response</div>
 
-          {isResponseString && !loading && (
+          {isStringResponse && !loading && (
             <p>{isErrorResponse ? response.slice(7) : response}</p>
           )}
           {loading && <LoaderInline color="white" />}

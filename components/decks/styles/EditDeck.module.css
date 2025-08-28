@@ -53,7 +53,8 @@
 }
 
 .list {
-  margin-top: 1rem;
+  margin: 1rem 0;
+  margin-bottom: 4rem;
   display: grid;
   gap: 1rem;
 }

@@ -10,6 +10,13 @@ export type DeckWithCards = {
   cards: CardWithId[];
 };
 
+export type DeckWithIds = DeckWithCards;
+
+export type DeckWithoutIds = {
+  name: string;
+  cards: FlashcardResponse[];
+};
+
 export type DeckWithCardsAndMetrics = DeckWithCards & {
   lastVisited: Date | undefined;
 };
@@ -26,12 +33,11 @@ export const flashCardWithIdSchema = flashcardSchema.extend({
 });
 
 export const deckResponseSchema = z.object({
-  title: z.string().min(3).max(55),
+  name: z.string().min(3).max(55),
   cards: z.array(flashcardSchema),
 });
 
 export type FlashcardResponse = z.input<typeof flashcardSchema>;
-export type DeckResponse = z.input<typeof deckResponseSchema>;
 
 export type GeneratedDeckWithCards = {
   id: string;
@@ -39,8 +45,8 @@ export type GeneratedDeckWithCards = {
   cards: FlashcardResponse[];
 };
 
-export const mockDeck: DeckResponse = {
-  title: 'React Basics Flashcards',
+export const mockDeck: DeckWithoutIds = {
+  name: 'React Basics Flashcards',
   cards: [
     {
       type: 'MULTICHOICE',
@@ -74,8 +80,8 @@ export const mockDeck: DeckResponse = {
   ],
 };
 
-export const qaMockDeck: DeckResponse = {
-  title: 'React Basics Flashcards',
+export const qaMockDeck: DeckWithoutIds = {
+  name: 'React Basics Flashcards',
   cards: [
     {
       type: 'QA',

@@ -31,10 +31,18 @@ const DeckCard = ({ id, name, numOfCards, lastVisited }: Props) => {
     }
   };
 
+  const trimName = (name: string) => {
+    const maxLength = 30;
+    if (name.length > maxLength) {
+      return name.slice(0, maxLength - 3) + '...';
+    }
+    return name;
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{name}</h3>
+        <h3 className={styles.title}>{trimName(name)}</h3>
         <div className={styles.dropdown}>
           <Dropdown
             btnIconUrl="/icons/more.svg"

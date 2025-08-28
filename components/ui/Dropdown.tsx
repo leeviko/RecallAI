@@ -25,6 +25,11 @@ const Dropdown = ({
 
   useClickOutside(dropdownRef, () => setHidden(true));
 
+  const handleClickWrapper = (itemOnClick?: () => void) => {
+    setHidden(true);
+    itemOnClick?.();
+  };
+
   return (
     <div ref={dropdownRef} className={styles.dropdownContainer}>
       <button className={`${styles.btn} ${styles[btnSize]} ${styles[variant]}`}>
@@ -50,11 +55,16 @@ const Dropdown = ({
           {items.map((item, index) => (
             <div key={index} className={styles.section}>
               {item.link ? (
-                <Link href={item.link} onClick={item.onClick}>
+                <Link
+                  href={item.link}
+                  onClick={() => handleClickWrapper(item.onClick)}
+                >
                   {item.label}
                 </Link>
               ) : (
-                <button onClick={item.onClick}>{item.label}</button>
+                <button onClick={() => handleClickWrapper(item.onClick)}>
+                  {item.label}
+                </button>
               )}
             </div>
           ))}

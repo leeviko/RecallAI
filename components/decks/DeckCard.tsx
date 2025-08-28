@@ -4,6 +4,8 @@ import styles from './styles/DeckCard.module.css';
 import Link from 'next/link';
 import { prettyDate } from '@/lib/utils';
 import Dropdown from '../ui/Dropdown';
+import { deleteDeck } from '@/app/(decks)/actions';
+import { toast } from 'sonner';
 
 type Props = {
   id: string;
@@ -16,6 +18,19 @@ const DeckCard = ({ id, name, numOfCards, lastVisited }: Props) => {
   const lastVisitedDate = new Date(lastVisited);
   const isValidDate = !isNaN(lastVisitedDate.getTime());
 
+  const handleDelete = async () => {
+    try {
+      const result = await deleteDeck(id);
+      if (result.ok) {
+        toast.success('Deck deleted');
+      } else {
+        toast.error(result.msg || 'Failed to delete deck');
+      }
+    } catch (error) {
+      toast.error('Failed to delete deck');
+    }
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -25,7 +40,7 @@ const DeckCard = ({ id, name, numOfCards, lastVisited }: Props) => {
             btnIconUrl="/icons/more.svg"
             items={[
               { label: 'Edit', link: `/deck/${id}/edit` },
-              { label: 'Delete', onClick: () => console.log('Delete deck') },
+              { label: 'Delete', onClick: handleDelete },
             ]}
             right="0"
           />

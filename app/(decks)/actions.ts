@@ -12,7 +12,8 @@ import {
 import prisma from '@/lib/prisma';
 import { FlashcardType } from '@prisma/client';
 import { APIResponse } from '@/lib/api-client';
-import { updateDeckDb } from '@/lib/db/decks';
+import { deleteDeckDb, updateDeckDb } from '@/lib/db/decks';
+import { revalidatePath } from 'next/cache';
 
 /**
  * Generate a new deck of flashcards using OpenAI.
@@ -137,6 +138,28 @@ export async function updateDeck(deckId: string, updates: UpdateDeckParams) {
   const userId = session.user.id;
 
   const result = await updateDeckDb(userId, deckId, updates);
+
+  return result;
+}
+
+/**
+ * Delete a deck.
+ * @param deckId The ID of the deck to delete.
+ */
+export async function deleteDeck(deckId: string) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    return { ok: false, msg: 'Unauthorized', status: 401 };
+  }
+
+  const userId = session.user.id;
+
+  const result = await deleteDeckDb(userId, deckId);
+
+  revalidatePath('/dashboard');
 
   return result;
 }

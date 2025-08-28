@@ -207,3 +207,34 @@ export async function updateDeckDb(
     return { ok: false, msg: 'Failed to update deck', status: 500 };
   }
 }
+
+/**
+ * Delete a deck.
+ * @param userId The ID of the user who owns the deck.
+ * @param deckId The ID of the deck to delete.
+ */
+export async function deleteDeckDb(
+  userId: string,
+  deckId: string
+): Promise<APIResponse<void>> {
+  try {
+    const deck = await prisma.deck.findUnique({
+      where: {
+        id: deckId,
+        userId,
+      },
+    });
+
+    if (!deck) {
+      return { ok: false, msg: 'Deck not found', status: 404 };
+    }
+
+    await prisma.deck.delete({
+      where: { id: deckId },
+    });
+
+    return { ok: true, data: undefined };
+  } catch (err) {
+    return { ok: false, msg: 'Failed to delete deck', status: 500 };
+  }
+}

@@ -4,11 +4,11 @@ import styles from './styles/Chat.module.css';
 import { generateDeck } from '@/app/(decks)/actions';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { DeckResponse } from '@/lib/schemas/flashcards';
+import { DeckWithoutIds } from '@/lib/schemas/flashcards';
 
 type Props = {
-  response: DeckResponse | null | string;
-  setResponse: (data: DeckResponse | string) => void;
+  response: DeckWithoutIds | null | string;
+  setResponse: (data: DeckWithoutIds | string) => void;
   setGenerated: (generated: boolean) => void;
 
   setLoading: (loading: boolean) => void;

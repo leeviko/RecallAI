@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 const Page = () => {
   const [email, setEmail] = useState('');
@@ -88,7 +89,7 @@ const Page = () => {
           disabled={loading}
           onClick={handleGoogleLogin}
         >
-          <img src="/icons/google.svg" alt="Google logo" />
+          <Image src="/icons/google.svg" alt="Google logo" />
           <span>Continue with Google</span>
         </button>
         <p className={styles.footer}>

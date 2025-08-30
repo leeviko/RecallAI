@@ -1,8 +1,6 @@
 import { betterAuth, BetterAuthOptions } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import prisma from './prisma';
-import { NextRequest } from 'next/server';
-import { getSessionCookie } from 'better-auth/cookies';
 
 const options = {
   database: prismaAdapter(prisma, {
@@ -27,10 +25,3 @@ const options = {
 } satisfies BetterAuthOptions;
 
 export const auth = betterAuth({ ...options });
-
-export const verifySession = async (req: NextRequest) => {
-  const sessionCookie = getSessionCookie(req);
-  if (!sessionCookie) return false;
-
-  return true;
-};

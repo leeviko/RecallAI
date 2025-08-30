@@ -1,12 +1,13 @@
+import { getSessionCookie } from 'better-auth/cookies';
 import { NextResponse, NextRequest } from 'next/server';
-import { verifySession } from '@/lib/auth';
 
 const protectedRoutes = ['/dashboard', '/create', '/deck'];
 const authRoutes = ['/login', '/register'];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const isAuthenticated = await verifySession(request);
+  const cookie = getSessionCookie(request);
+  const isAuthenticated = cookie !== null;
 
   const isAuthPage = authRoutes.includes(pathname);
 

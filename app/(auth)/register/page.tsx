@@ -6,16 +6,16 @@ import LoaderInline from '@/components/loader/LoaderInline';
 import { signIn, signUp } from '@/lib/auth-client';
 import styles from '../Auth.module.css';
 import Link from 'next/link';
-import { redirect, useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { toast } from 'sonner';
+import Image from 'next/image';
 
 const Page = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
@@ -104,7 +104,7 @@ const Page = () => {
           disabled={loading}
           onClick={handleGoogleLogin}
         >
-          <img src="/icons/google.svg" alt="Google logo" />
+          <Image src="/icons/google.svg" alt="Google logo" />
           <span>Continue with Google</span>
         </button>
         <p className={styles.footer}>

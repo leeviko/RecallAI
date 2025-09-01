@@ -13,9 +13,7 @@ services:
       - '5432:5432'
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/leeviko/recallai:latest
     container_name: recall_app
     restart: always
     env_file:

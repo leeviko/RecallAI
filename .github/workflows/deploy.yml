@@ -39,4 +39,4 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd /srv/www/apps/recall
-            sh deploy.sh
+            bash deploy.sh

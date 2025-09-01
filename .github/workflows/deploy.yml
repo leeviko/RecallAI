@@ -19,8 +19,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push image
         run: |
-          docker build -f Dockerfile -t ghcr.io/leeviko/recall .
-          docker push ghcr.io/leeviko/recall
+          docker build -f Dockerfile -t ghcr.io/leeviko/recallai .
+          docker push ghcr.io/leeviko/recallai
 
   deploy:
     runs-on: ubuntu-latest

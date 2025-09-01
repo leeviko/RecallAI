@@ -104,7 +104,12 @@ const Page = () => {
           disabled={loading}
           onClick={handleGoogleLogin}
         >
-          <Image src="/icons/google.svg" alt="Google logo" />
+          <Image
+            src="/icons/google.svg"
+            alt="Google logo"
+            width={48}
+            height={48}
+          />
           <span>Continue with Google</span>
         </button>
         <p className={styles.footer}>

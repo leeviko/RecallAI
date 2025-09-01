@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nextjs_app
+    container_name: recall_app
     restart: always
     env_file:
       - .env
@@ -27,6 +27,13 @@ services:
       - postgres
     ports:
       - '3000:3000'
+    networks:
+      - proxy
+      - default
 
 volumes:
   postgres_data:
+
+networks:
+  proxy:
+    external: true

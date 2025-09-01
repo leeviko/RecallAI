@@ -13,8 +13,6 @@ COPY . .
 RUN pnpm prisma generate
 
 RUN pnpm build
-RUN pnpm prune --prod
-
 
 #######################
 FROM node:22-alpine AS runner

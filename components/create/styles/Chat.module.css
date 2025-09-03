@@ -14,7 +14,7 @@
 }
 
 .container textarea {
-  font-family: var(--geins-sans);
+  font-family: var(--geist-sans);
   max-height: 500px;
   min-height: 150px;
   border-radius: 10px;

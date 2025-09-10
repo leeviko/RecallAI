@@ -2,40 +2,20 @@
 import { DeckSummary } from '@/lib/db/decks';
 import DeckCard from '../decks/DeckCard';
 import styles from './styles/DeckList.module.css';
-import { useState } from 'react';
+import { use } from 'react';
 import Image from 'next/image';
+import { APIResponse } from '@/lib/api-client';
+import { useGetDeckSummaries } from '@/hooks/useGetDeckSummaries';
 
 type Props = {
-  decks: DeckSummary[];
+  decksPromise: Promise<APIResponse<DeckSummary[]>>;
 };
 
-const DeckList = ({ decks: initialDecks }: Props) => {
-  const [decks, setDecks] = useState(initialDecks);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(initialDecks.length === 8);
-
-  const fetchPage = async (newPage: number) => {
-    const limit = 8;
-    if (newPage < 1) return;
-
-    setLoading(true);
-
-    const response = await fetch(`/api/decks?page=${newPage}`);
-    const data = await response.json();
-
-    if (data.length > 0) {
-      setDecks(data);
-      setPage(newPage);
-    }
-    if (data.length === limit) {
-      setHasMore(true);
-    } else {
-      setHasMore(false);
-    }
-
-    setLoading(false);
-  };
+const DeckList = ({ decksPromise }: Props) => {
+  const initialDecks = use(decksPromise);
+  const { decks, loading, page, hasMore, fetchPage } = useGetDeckSummaries(
+    initialDecks.ok ? initialDecks.data : []
+  );
 
   return (
     <div className={styles.container}>

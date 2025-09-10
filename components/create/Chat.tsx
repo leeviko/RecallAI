@@ -43,7 +43,7 @@ const Chat = ({
         setPrompt('');
         setResponse(res.msg);
       } else {
-        setResponse('Failed to generate valid cards!');
+        setResponse('Error: Failed to generate valid cards!');
       }
     }
   };

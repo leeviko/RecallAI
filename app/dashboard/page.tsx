@@ -8,6 +8,8 @@ import { headers } from 'next/headers';
 import { getTotalStudyTime, getLastStudied } from '@/lib/db/studySessions';
 import Stats from '@/components/dashboard/Stats';
 import DeckList from '@/components/dashboard/DeckList';
+import { Suspense } from 'react';
+import Skeleton from '@/components/loader/Skeleton';
 
 const Page = async () => {
   const session = await auth.api.getSession({
@@ -18,19 +20,10 @@ const Page = async () => {
     redirect('/login');
   }
 
-  let [decks, countsResult, studyTime, lastStudied] = await Promise.all([
-    getUserDeckSummaries(session.user.id),
-    getUserDeckCounts(session.user.id),
-    getTotalStudyTime(session.user.id),
-    getLastStudied(session.user.id),
-  ]);
-
-  let counts;
-  if (!countsResult.ok) {
-    counts = { totalDecks: '-', totalCards: '-' };
-  } else {
-    counts = countsResult.data;
-  }
+  const decks = getUserDeckSummaries(session.user.id);
+  const counts = getUserDeckCounts(session.user.id);
+  const studyTime = getTotalStudyTime(session.user.id);
+  const lastStudied = getLastStudied(session.user.id);
 
   return (
     <div className={styles.page}>
@@ -46,16 +39,18 @@ const Page = async () => {
           </Button>
         </div>
       </div>
-      <Stats
-        totalDecks={counts.totalDecks}
-        totalCards={counts.totalCards}
-        studyTime={studyTime}
-        lastStudied={lastStudied}
-      />
+      <Suspense fallback={<Skeleton height="130px" count={4} />}>
+        <Stats
+          countsPromise={counts}
+          studyTimePromise={studyTime}
+          lastStudiedPromise={lastStudied}
+        />
+      </Suspense>
       <div className={styles.decks}>
         <h2>Your Decks</h2>
-        {decks.ok && <DeckList decks={decks.data} />}
-        {!decks.ok && <p>Failed to load decks</p>}
+        <Suspense fallback={<Skeleton height="150px" count={4} />}>
+          <DeckList decksPromise={decks} />
+        </Suspense>
       </div>
     </div>
   );

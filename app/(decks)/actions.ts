@@ -27,13 +27,19 @@ export async function generateDeck(
   });
   if (!session) return { ok: false, msg: 'Unauthorized', status: 401 };
 
-  const response = await openai.responses.create({
-    model: 'gpt-4o-mini',
-    instructions: instructions,
-    input: prompt,
-  });
+  let output: string = '';
+  try {
+    const response = await openai.responses.create({
+      model: 'gpt-4o-mini',
+      instructions: instructions,
+      input: prompt,
+    });
 
-  const output = response.output_text;
+    output = response.output_text;
+  } catch (err) {
+    console.log(err);
+    return { ok: false, msg: 'Error: Failed to generate cards', status: 500 };
+  }
 
   try {
     const validatedOutput = deckResponseSchema.safeParse(JSON.parse(output));

@@ -1,6 +1,11 @@
 import { FlashcardType } from '@prisma/client';
 import { z } from 'zod';
 
+export type GetUserDeckCountsResponse = {
+  totalDecks: number;
+  totalCards: number;
+};
+
 export type CardWithId = FlashcardResponse & { id: string };
 
 export type DeckWithCards = {

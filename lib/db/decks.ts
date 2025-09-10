@@ -4,6 +4,7 @@ import {
   DeckWithCards,
   DeckWithCardsAndMetrics,
   flashCardWithIdSchema,
+  GetUserDeckCountsResponse,
 } from '../schemas/flashcards';
 import prisma from '../prisma';
 import z from 'zod';
@@ -54,11 +55,6 @@ export async function getDeckDb(
     return { ok: false, msg: 'Internal Server Error', status: 500 };
   }
 }
-
-type GetUserDeckCountsResponse = {
-  totalDecks: number;
-  totalCards: number;
-};
 
 /**
  * Get the total count of decks and cards for a user.

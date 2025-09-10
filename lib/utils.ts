@@ -27,3 +27,7 @@ export const formatDuration = (duration: number) => {
   const seconds = Math.floor((duration % 60000) / 1000);
   return `${minutes} min ${seconds} sec`;
 };
+
+export const sleep = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};

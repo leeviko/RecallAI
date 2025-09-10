@@ -1,0 +1,26 @@
+.page {
+  width: 60%;
+  height: 100%;
+  margin-top: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.page h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.page .date {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.page .text {
+  margin-top: 1.5rem;
+  line-height: 1.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}

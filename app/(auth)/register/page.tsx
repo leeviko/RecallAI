@@ -115,6 +115,11 @@ const Page = () => {
         <p className={styles.footer}>
           Already have an account? <Link href="/login">Sign in</Link>
         </p>
+        <p className={styles.tos}>
+          By registering, you agree to our{' '}
+          <Link href="/tos">Terms of Service</Link> and{' '}
+          <Link href="/privacy">Privacy Policy</Link>.
+        </p>
       </div>
     </div>
   );

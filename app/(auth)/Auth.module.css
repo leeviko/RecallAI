@@ -54,11 +54,21 @@
   color: var(--teal-light-100);
 }
 
-.footer {
+.footer,
+.tos {
   margin-top: 0.5rem;
   opacity: 0.8;
 }
 
-.footer a {
+.footer a,
+.tos a {
   color: var(--link);
+}
+
+.tos {
+  width: 350px;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  opacity: 0.8;
+  font-style: italic;
 }

@@ -11,10 +11,10 @@ declare namespace NodeJS {
     POSTGRES_DB: string;
 
     OPENAI_API_KEY: string;
-    
-    GOOGLE_CLIENT_SECRET:string;
-    GOOGLE_CLIENT_ID:string;
 
-    NEXT_PUBLIC_API_URL:string;
+    GOOGLE_CLIENT_SECRET: string;
+    GOOGLE_CLIENT_ID: string;
+
+    NEXT_PUBLIC_API_URL: string;
   }
 }

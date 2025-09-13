@@ -1,14 +1,19 @@
-.deckList {
+.container {
   margin-top: 1rem;
+  width: 100%;
+}
+
+.deckList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+  gap: 0.5rem;
 }
 
 .pagination button {
@@ -18,7 +23,6 @@
   padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
 
 .pagination button:disabled {
@@ -28,4 +32,24 @@
 
 .pagination .prevBtn img {
   transform: rotate(180deg);
+}
+
+@media screen and (max-width: 900px) {
+  .deckList {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .deckList {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  .pagination {
+    gap: 0.25rem;
+  }
+  .pagination button img {
+    width: 40px;
+    height: 40px;
+  }
 }

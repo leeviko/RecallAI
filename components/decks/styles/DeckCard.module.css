@@ -39,7 +39,6 @@
 }
 
 .lastStudied {
-  white-space: nowrap;
   font-size: 0.8rem;
   margin-top: 0.5rem;
   color: rgba(255, 255, 255, 0.5);

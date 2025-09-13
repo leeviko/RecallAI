@@ -72,3 +72,24 @@
   opacity: 0.8;
   font-style: italic;
 }
+
+@media screen and (max-width: 475px) {
+  .box {
+    min-width: 90vw;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .box {
+    background-color: var(--black-dark-2-025);
+    border: none;
+    min-width: unset;
+    width: 100vw;
+    height: auto;
+    min-height: unset;
+  }
+  .tos {
+    width: auto;
+  }
+}

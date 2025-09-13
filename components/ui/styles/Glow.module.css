@@ -6,7 +6,6 @@
   height: 60vw;
   max-width: 1200px;
   max-height: 700px;
-  min-width: 600px;
   min-height: 300px;
   transform: translate(-50%, -50%) skew(18deg, 10deg) scale(1.1, 0.8);
   background: linear-gradient(

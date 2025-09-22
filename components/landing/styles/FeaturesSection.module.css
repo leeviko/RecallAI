@@ -72,3 +72,19 @@
   pointer-events: auto;
   z-index: 1;
 }
+
+@media screen and (max-width: 455px) {
+  .tabs {
+    position: relative;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .tabs button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .imgContainer {
+    height: auto;
+    position: absolute;
+  }
+}

@@ -76,3 +76,42 @@
   border-color: var(--red-050);
   color: rgba(255, 255, 255, 0.9);
 }
+
+@media screen and (max-width: 640px) {
+  .multichoice {
+    padding: 2rem 2.5rem;
+  }
+
+  .question {
+    font-size: 1.25rem;
+  }
+
+  .choices {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .choice {
+    /* font-size: 1rem; */
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .multichoice {
+    padding: 1.5rem;
+  }
+
+  .question {
+    font-size: 1rem;
+    height: auto;
+  }
+
+  .choicesContainer {
+    padding: 1.5rem 0;
+  }
+
+  .choice {
+    font-size: 1rem;
+  }
+}

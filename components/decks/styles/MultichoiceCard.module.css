@@ -76,3 +76,43 @@
   border-color: var(--red-050);
   color: rgba(255, 255, 255, 0.9);
 }
+
+@media screen and (max-width: 640px) {
+  .multichoice {
+    padding: 2rem 2.5rem;
+  }
+
+  .question {
+    font-size: 1.25rem;
+  }
+
+  .choices {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .choice {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .multichoice {
+    padding: 1rem 1.5rem;
+  }
+
+  .question {
+    font-size: 1rem;
+    height: auto;
+  }
+
+  .choicesContainer {
+    padding: 1.5rem 0;
+  }
+
+  .choice {
+    font-size: 0.875rem;
+    padding: 0 0.75rem;
+  }
+}

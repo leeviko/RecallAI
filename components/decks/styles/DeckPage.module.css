@@ -2,6 +2,23 @@
   height: 100%;
   position: relative;
   width: 60%;
+  min-width: 575px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 800px) {
+  .page {
+    width: 90%;
+    min-width: unset;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .page {
+    padding: 0 1rem;
+    width: 100%;
+    min-width: unset;
+  }
 }

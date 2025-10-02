@@ -141,3 +141,15 @@
   margin: 0;
   color: var(--teal-light-050);
 }
+
+@media screen and (max-width: 800px) {
+  .wrapper {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .wrapper {
+    padding: 1rem;
+  }
+}

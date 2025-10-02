@@ -5,3 +5,26 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+@media screen and (max-width: 800px) {
+  .page {
+    width: 90%;
+    min-width: unset;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .page {
+    padding: 0 1rem;
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .page {
+    padding: 0;
+    width: 100%;
+    min-width: unset;
+  }
+}

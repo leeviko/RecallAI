@@ -5,7 +5,7 @@ import styles from './styles/HeroSection.module.css';
 const HeroSection = () => {
   return (
     <section className={styles.hero}>
-      <Glow />
+      <Glow opacity={0.2} />
       <div className={styles.content}>
         <h1>
           <div>Paste. Learn. Remember.</div>

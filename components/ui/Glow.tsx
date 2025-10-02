@@ -1,7 +1,11 @@
 import styles from './styles/Glow.module.css';
 
-const Glow = () => {
-  return <div className={styles.glow}></div>;
+type Props = {
+  opacity?: number;
+};
+
+const Glow = ({ opacity }: Props) => {
+  return <div className={styles.glow} style={{ opacity }}></div>;
 };
 
 export default Glow;

@@ -51,27 +51,32 @@
 - PostgreSQL
 
 
-0. Clone the repo
+1. Clone the repo
 ```bash
 git clone https://github.com/leeviko/RecallAI.git
 cd RecallAI
 ```
-1. Create a psql database named `recall`
+
 2. Install all dependencies
 ```bash
 pnpm install
 ```
+
 3. Setup your env variables
 ```bash
 cp .env.example .env
 ```
 then edit the variables
-4. Setup Prisma and generate prisma client
+
+4. Create a new psql database named `recall`
+
+5. Setup Prisma and generate prisma client
 ```bash
 pnpm prisma migrate dev
 pnpm prisma generate
 ```
-5. Start the dev server
+
+6. Start the dev server
 ```bash
 pnpm dev
 ```
